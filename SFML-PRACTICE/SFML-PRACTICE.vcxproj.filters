@@ -16,6 +16,9 @@
     <Filter Include="MiniGame1">
       <UniqueIdentifier>{98200f94-d4af-4606-9058-db98f41aa8e8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MiniGame2">
+      <UniqueIdentifier>{3e093114-e8df-41ef-ace3-62b8863350be}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="game1.cpp">
@@ -24,10 +27,31 @@
     <ClCompile Include="Core.cpp">
       <Filter>MiniGame1</Filter>
     </ClCompile>
+    <ClCompile Include="main2.cpp">
+      <Filter>MiniGame2</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>MiniGame2</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>MiniGame2</Filter>
+    </ClCompile>
+    <ClCompile Include="Ball.cpp">
+      <Filter>MiniGame2</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core.h">
       <Filter>MiniGame1</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>MiniGame2</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>MiniGame2</Filter>
+    </ClInclude>
+    <ClInclude Include="Ball.h">
+      <Filter>MiniGame2</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

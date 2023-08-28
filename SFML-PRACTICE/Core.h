@@ -25,8 +25,12 @@ public:
 		rect.setOutlineColor(sf::Color::Blue);
 		rect.setOutlineThickness(3.f);
 	}
-	const sf::RectangleShape const GetRect( return rect );
-	const int const GetScore( return score );
+	const sf::RectangleShape const GetRect() {
+		return rect;
+	};
+	const int const GetScore() {
+		return score;
+	};
 };
 
 class Core
@@ -40,7 +44,7 @@ private:
 	sf::Vector2f						m_mouseposview;
 	sf::Font							m_font;
 	sf::Text							m_text;
-	std::vector<Enemy> m_vecenmey;
+	std::vector<Enemy> enemys;
 private:
 	float m_fEnemySpawnTimer;
 	float m_fEnemySpawnTimerMax;

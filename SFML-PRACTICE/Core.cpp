@@ -70,9 +70,8 @@ void Core::UpdateMousePos()
 
 void Core::SpawnEnemy()
 {
-	
-	
-	int randX = rand() % (int)(m_window->getSize().x - enemy.getSize().x);
+	int randNum = rand() % 5;
+	Enemy enemy = enemys[randNum];
 	enemy.setPosition(randX , 0);
 	enemy.setFillColor(sf::Color::Cyan);
 	enemy.setOutlineColor(sf::Color::Blue);
