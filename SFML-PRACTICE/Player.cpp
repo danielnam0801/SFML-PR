@@ -1,4 +1,5 @@
 #include "Player.h"
+#include<iostream>
 
 Player::Player(float _x, float _y)
 	:m_fmovespeed(10.f)
@@ -6,6 +7,11 @@ Player::Player(float _x, float _y)
 	m_shape.setPosition(_x, _y);
 	m_shape.setSize(sf::Vector2f(100.f, 100.f));
 	m_shape.setFillColor(sf::Color::Cyan);
+
+	if (!m_tex.loadFromFile("../Res/Texture/Player.png")) {
+		std::cout << "texture load error" << std::endl;
+	}
+	m_shape.setTexture(&m_tex);
 }
 
 Player::~Player()

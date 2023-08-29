@@ -1,9 +1,11 @@
 #pragma once
 #include "SFML/Graphics.hpp"
+#include "SFML/Audio.hpp"
 class Player
 {
 private:
 	sf::RectangleShape m_shape;
+	sf::Texture		   m_tex;
 	float			   m_fmovespeed;
 	sf::RenderWindow*  m_window;
 public:
