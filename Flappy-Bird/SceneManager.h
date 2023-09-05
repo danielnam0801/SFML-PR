@@ -1,6 +1,7 @@
 #pragma once
 #include<stack>
 #include<memory>
+#include "Scene.h"
 class Scene;
 class SceneManager
 {
@@ -12,8 +13,8 @@ public:
 	void ChangeScene();
 
 	//ÇöÀç ¾À
-	const std::unique_ptr<Scene> GetCurScene() {
-		return std::move(m_Scenes.top());
+	const std::unique_ptr<Scene>& GetCurScene() const {
+		return m_Scenes.top();
 	}
 private:
 	std::stack<std::unique_ptr<Scene>> m_Scenes;

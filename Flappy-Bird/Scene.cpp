@@ -2,10 +2,9 @@
 
 void Scene::Init()
 {
-
 }
 
-void Scene::Update()
+void Scene::Update(float _dt)
 {
 }
 
