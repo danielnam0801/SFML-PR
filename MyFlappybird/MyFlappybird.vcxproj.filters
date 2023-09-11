@@ -14,6 +14,9 @@
     <Filter Include="Scene">
       <UniqueIdentifier>{44af1e3b-6a02-426b-8ccc-fd6cacd45527}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object">
+      <UniqueIdentifier>{6d6a5dce-4524-4d37-aedd-c62fba2ec830}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SceneMgr.h">
@@ -37,6 +40,16 @@
     <ClInclude Include="IntroScene.h">
       <Filter>Scene</Filter>
     </ClInclude>
+    <ClInclude Include="MainMenuScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOverScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Pipe.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="temp.cpp" />
@@ -61,5 +74,15 @@
     <ClCompile Include="IntroScene.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
+    <ClCompile Include="MainMenuScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOverScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Pipe.cpp" />
   </ItemGroup>
 </Project>

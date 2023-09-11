@@ -1,6 +1,6 @@
 #include "InputMgr.h"
 
-bool InputMgr::IsSpliteClicked(sf::Sprite _object, sf::Mouse::Button _button, sf::RenderWindow _window)
+bool InputMgr::IsSpliteClicked(sf::Sprite _object, sf::Mouse::Button _button, sf::RenderWindow& _window)
 {
 	if (sf::Mouse::isButtonPressed(_button))
 	{

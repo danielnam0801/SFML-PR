@@ -23,6 +23,12 @@ void Core::Init()
 {
 	m_gamedata->Scenemgr.AddScene(std::make_unique<IntroScene>(m_gamedata));
 	m_gamedata->Resmgr.LoadTexture("Intro Scene Background", INTRO_SCENE_BACKGROUND_FILEPATH);
+	m_gamedata->Resmgr.LoadTexture("Title", MAIN_SCENE_TITLE_FILEPATH);
+	m_gamedata->Resmgr.LoadTexture("PlayButton", MAIN_SCENE_PLAYBUTTON_FILEPATH);
+	m_gamedata->Resmgr.LoadTexture("Main Scene Background", MAIN_SCENE_BACKGROUND_FILEPATH);
+	m_gamedata->Resmgr.LoadTexture("Pipe Up", PIPE_UP_FILEPATH);
+	m_gamedata->Resmgr.LoadTexture("Pipe Down", PIPE_DOWN_FILEPATH);
+
 }
 
 void Core::Run()

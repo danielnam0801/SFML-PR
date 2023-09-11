@@ -1,5 +1,8 @@
 #include "IntroScene.h"
+#include "MainMenuScene.h"
 #include "define.h"
+#include <iostream>
+
 IntroScene::IntroScene(std::shared_ptr<GameData> _gamedata)
 	: m_gamedata(_gamedata)
 {
@@ -11,6 +14,18 @@ void IntroScene::Init()
 
 void IntroScene::Update(float _dt)
 {
+	int startalpha = 0;
+	int endalpha = 255;
+	static int curalpha = startalpha;
+	m_background.setColor(sf::Color(255, 255, 255, curalpha));
+	
+	if (m_clock.getElapsedTime().asSeconds() > INTRO_SHOW_TIME && curalpha >= endalpha ) {
+		m_gamedata->Scenemgr.AddScene(std::make_unique<MainMenuScene>(m_gamedata));
+	}
+	else {
+		curalpha =  endalpha * m_clock.getElapsedTime().asSeconds() / INTRO_SHOW_TIME;
+
+	}
 }
 
 void IntroScene::Render()
