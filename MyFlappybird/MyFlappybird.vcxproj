@@ -130,12 +130,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Bird.h" />
     <ClInclude Include="Core.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="GameOverScene.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="InputMgr.h" />
     <ClInclude Include="IntroScene.h" />
+    <ClInclude Include="Land.h" />
     <ClInclude Include="MainMenuScene.h" />
     <ClInclude Include="Pipe.h" />
     <ClInclude Include="ResMgr.h" />
@@ -143,11 +145,13 @@
     <ClInclude Include="SceneMgr.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Bird.cpp" />
     <ClCompile Include="Core.cpp" />
     <ClCompile Include="GameOverScene.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="InputMgr.cpp" />
     <ClCompile Include="IntroScene.cpp" />
+    <ClCompile Include="Land.cpp" />
     <ClCompile Include="main.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>

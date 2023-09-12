@@ -28,6 +28,11 @@ void Core::Init()
 	m_gamedata->Resmgr.LoadTexture("Main Scene Background", MAIN_SCENE_BACKGROUND_FILEPATH);
 	m_gamedata->Resmgr.LoadTexture("Pipe Up", PIPE_UP_FILEPATH);
 	m_gamedata->Resmgr.LoadTexture("Pipe Down", PIPE_DOWN_FILEPATH);
+	m_gamedata->Resmgr.LoadTexture("Bird 1", BIRD_ANIM1_FILEPATH);
+	m_gamedata->Resmgr.LoadTexture("Bird 2", BIRD_ANIM2_FILEPATH);
+	m_gamedata->Resmgr.LoadTexture("Bird 3", BIRD_ANIM3_FILEPATH);
+	m_gamedata->Resmgr.LoadTexture("Bird 4", BIRD_ANIM4_FILEPATH);
+	m_gamedata->Resmgr.LoadTexture("Land", LAND_FILEPATH);
 
 }
 
