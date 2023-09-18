@@ -58,6 +58,8 @@
     <ClInclude Include="Land.h">
       <Filter>Object</Filter>
     </ClInclude>
+    <ClInclude Include="Collision.h" />
+    <ClInclude Include="Flash.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="temp.cpp" />
@@ -100,5 +102,7 @@
     <ClCompile Include="Land.cpp">
       <Filter>Object</Filter>
     </ClCompile>
+    <ClCompile Include="Collision.cpp" />
+    <ClCompile Include="Flash.cpp" />
   </ItemGroup>
 </Project>
