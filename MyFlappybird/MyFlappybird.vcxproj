@@ -137,6 +137,7 @@
     <ClInclude Include="Flash.h" />
     <ClInclude Include="GameOverScene.h" />
     <ClInclude Include="GameScene.h" />
+    <ClInclude Include="Hud.h" />
     <ClInclude Include="InputMgr.h" />
     <ClInclude Include="IntroScene.h" />
     <ClInclude Include="Land.h" />
@@ -153,6 +154,7 @@
     <ClCompile Include="Flash.cpp" />
     <ClCompile Include="GameOverScene.cpp" />
     <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="Hud.cpp" />
     <ClCompile Include="InputMgr.cpp" />
     <ClCompile Include="IntroScene.cpp" />
     <ClCompile Include="Land.cpp" />

@@ -34,7 +34,13 @@ void Core::Init()
 	m_gamedata->Resmgr.LoadTexture("Bird 3", BIRD_ANIM3_FILEPATH);
 	m_gamedata->Resmgr.LoadTexture("Bird 4", BIRD_ANIM4_FILEPATH);
 	m_gamedata->Resmgr.LoadTexture("Land", LAND_FILEPATH);
-	m_gamedata->Resmgr.LoadFont("Font Score", FONT_SCORE_FILEPATH);
+	m_gamedata->Resmgr.LoadTexture("Game Over Body", GAME_OVER_BODY_FILEPATH);
+	m_gamedata->Resmgr.LoadTexture("Game Over Title", GAME_OVER_TITLE_FILEPATH);
+	m_gamedata->Resmgr.LoadFont("Flappy Font", FONT_SCORE_FILEPATH);
+	m_gamedata->Resmgr.LoadSoundbuf("Hit Sound", HIT_SOUND_FILEPATH);
+	m_gamedata->Resmgr.LoadSoundbuf("Wing Sound", WING_SOUND_FILEPATH);
+	m_gamedata->Resmgr.LoadSoundbuf("Point Sound", POINT_SOUND_FILEPATH);
+
 
 }
 

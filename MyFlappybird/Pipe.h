@@ -25,6 +25,6 @@ public:
 	int m_landHeight;
 	int m_pipeOffset;
 	const std::vector<sf::Sprite>& GetSprite() const { return m_vecpipesprite; }
-	const std::vector<sf::Sprite>& GetScorePipeSprite() const { return m_vecscorepipesprite; }
+	std::vector<sf::Sprite>& GetScorePipeSprite() { return m_vecscorepipesprite; }
 };
 

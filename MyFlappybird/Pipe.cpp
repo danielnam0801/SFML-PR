@@ -11,11 +11,18 @@ void Pipe::Update(float _dt)
 	for (size_t i = 0; i < m_vecpipesprite.size(); ++i)
 	{
 		m_vecpipesprite[i].move(-PIPE_MOVE_SPEED * _dt, 0);
+
+	}
+	for (size_t i = 0; i < m_vecscorepipesprite.size(); ++i)
+	{
+		m_vecscorepipesprite[i].move(-PIPE_MOVE_SPEED * _dt, 0);
+
 	}
 	if (m_clock.getElapsedTime().asSeconds() > PIPE_SPAWN_FREQUENCY) {
 		m_clock.restart();
 		SpawnUpdate();
 	}
+
 	DeletePipeCheck();
 }
 
@@ -23,6 +30,9 @@ void Pipe::Render()
 {
 	for (size_t i = 0; i < m_vecpipesprite.size(); ++i) {
 		m_gameData->Window.draw(m_vecpipesprite[i]);
+	}
+	for (size_t i = 0; i < m_vecscorepipesprite.size(); ++i) {
+		m_gameData->Window.draw(m_vecscorepipesprite[i]);
 	}
 }
 
@@ -44,9 +54,8 @@ void Pipe::SpawnPipeDown()
 
 void Pipe::SpawnPipeMiddle()
 {
-	sf::Sprite pipe;
-	pipe.setTexture(m_gameData->Resmgr.GetTexture("Pipe Middle"));
-	pipe.setPosition(m_gameData->Window.getSize().x, m_pipeOffset);
+	sf::Sprite pipe(m_gameData->Resmgr.GetTexture("Pipe Middle"));
+	pipe.setPosition(m_gameData->Window.getSize().x, 0);
 	m_vecscorepipesprite.push_back(pipe);
 }
 

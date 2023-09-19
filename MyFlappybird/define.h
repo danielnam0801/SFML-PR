@@ -15,7 +15,6 @@
 #define PIPE_RAND_VALUE 200.0f
 #define PIPE_SPAWN_FREQUENCY 2.0f
 
-#define FONT_SCORE_FILEPATH "Output\\fonts\\arial.ttf"
 
 // ==================== Bird ====================
 #define BIRD_ANIM1_FILEPATH "Output\\res\\bird-01.png" 
@@ -28,6 +27,19 @@
 #define FLYING_SPEED	150.0f
 #define FLYING_DURATION 0.25f
 #define ROTATE_SPEED	100.0f
+
+// =================================================
+
+#define FONT_SCORE_FILEPATH "Output\\fonts\\FlappyFont.ttf"
+
+// =================================================
+
+#define GAME_OVER_BODY_FILEPATH "Output\\res\\Game-Over-Body.png"
+#define GAME_OVER_TITLE_FILEPATH "Output\\res\\Game-Over-Title.png"
+
+#define HIT_SOUND_FILEPATH "Output\\audio\\Hit.wav"
+#define POINT_SOUND_FILEPATH "Output\\audio\\Point.wav"
+#define WING_SOUND_FILEPATH "Output\\audio\\Wing.wav"
 
 enum class BIRDSTATE
 {
