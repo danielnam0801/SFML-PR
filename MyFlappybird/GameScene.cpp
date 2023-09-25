@@ -76,6 +76,7 @@ void GameScene::Update(float _dt)
 			m_gameState = GAMESTATE::GAMEOVER;
 		}
 	}
+
 	std::vector<sf::Sprite> vecpipesprite = m_pPipe->GetSprite();
 	for (size_t i = 0; i < vecpipesprite.size(); i++)
 	{

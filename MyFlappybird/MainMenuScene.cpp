@@ -1,5 +1,6 @@
 #include "MainMenuScene.h"
 #include "GameScene.h" 
+#include "AIScene.h"
 
 MainMenuScene::MainMenuScene(std::shared_ptr<GameData> _data)
 	:m_gamedata(_data)
@@ -18,6 +19,10 @@ void MainMenuScene::Init()
 
 void MainMenuScene::Update(float _dt)
 {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	{
+		m_gamedata->Scenemgr.AddScene(std::make_unique<AIScene>(m_gamedata));
+	}
 	if (m_gamedata->Inputmgr.IsSpliteClicked(m_playButton, sf::Mouse::Left, m_gamedata->Window)) 
 	{
 		m_gamedata->Scenemgr.AddScene(std::make_unique<GameScene>(m_gamedata));

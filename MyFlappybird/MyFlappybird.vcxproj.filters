@@ -17,6 +17,9 @@
     <Filter Include="Object">
       <UniqueIdentifier>{6d6a5dce-4524-4d37-aedd-c62fba2ec830}</UniqueIdentifier>
     </Filter>
+    <Filter Include="AI">
+      <UniqueIdentifier>{f72c7ef5-e2ea-4270-95ae-80c37ec5e707}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SceneMgr.h">
@@ -58,9 +61,23 @@
     <ClInclude Include="Land.h">
       <Filter>Object</Filter>
     </ClInclude>
-    <ClInclude Include="Collision.h" />
-    <ClInclude Include="Flash.h" />
-    <ClInclude Include="Hud.h" />
+    <ClInclude Include="Hud.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Flash.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="AIScene.h">
+      <Filter>AI</Filter>
+    </ClInclude>
+    <ClInclude Include="AiPipe.h">
+      <Filter>AI</Filter>
+    </ClInclude>
+    <ClInclude Include="AiPipeManager.h" />
+    <ClInclude Include="AiBird.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="temp.cpp" />
@@ -103,8 +120,22 @@
     <ClCompile Include="Land.cpp">
       <Filter>Object</Filter>
     </ClCompile>
-    <ClCompile Include="Collision.cpp" />
-    <ClCompile Include="Flash.cpp" />
-    <ClCompile Include="Hud.cpp" />
+    <ClCompile Include="Hud.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Flash.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="AIScene.cpp">
+      <Filter>AI</Filter>
+    </ClCompile>
+    <ClCompile Include="AiPipe.cpp">
+      <Filter>AI</Filter>
+    </ClCompile>
+    <ClCompile Include="AiPipeManager.cpp" />
+    <ClCompile Include="AiBird.cpp" />
   </ItemGroup>
 </Project>

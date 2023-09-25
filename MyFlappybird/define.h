@@ -41,6 +41,23 @@
 #define POINT_SOUND_FILEPATH "Output\\audio\\Point.wav"
 #define WING_SOUND_FILEPATH "Output\\audio\\Wing.wav"
 
+#define AI_BIRD "Output\\res\\Bird16.png"
+#define AI_SCENE "Output\\res\\Background.png"
+#define AI_PIPE "Output\\res\\Pipes16.png"
+
+// bg size
+const int SCREEN_HEIGHT = 320;
+const int SCREEN_WIDTH = 180;
+const int PIPE_SPEED = 1;
+const int BIRD_SPEED = 1;
+const int GAP_SIZE = 64;
+const int PIPE_INDENT = 32;
+const int GROUND_Y = 288;
+const int BIRD_SIZE = 16;
+const int TIMER_DURATION = 128;
+const float AI_GRAVITY = 0.25f;
+const float FLIP_SPEED = -4.f;
+
 enum class BIRDSTATE
 {
 	UP, DOWN, IDLE, FLY, FALL

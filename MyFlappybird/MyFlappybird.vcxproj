@@ -130,6 +130,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AiBird.h" />
+    <ClInclude Include="AiPipe.h" />
+    <ClInclude Include="AiPipeManager.h" />
+    <ClInclude Include="AIScene.h" />
     <ClInclude Include="Bird.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Core.h" />
@@ -148,6 +152,10 @@
     <ClInclude Include="SceneMgr.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AiBird.cpp" />
+    <ClCompile Include="AiPipe.cpp" />
+    <ClCompile Include="AiPipeManager.cpp" />
+    <ClCompile Include="AIScene.cpp" />
     <ClCompile Include="Bird.cpp" />
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Core.cpp" />

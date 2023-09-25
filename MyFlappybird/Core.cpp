@@ -40,6 +40,9 @@ void Core::Init()
 	m_gamedata->Resmgr.LoadSoundbuf("Hit Sound", HIT_SOUND_FILEPATH);
 	m_gamedata->Resmgr.LoadSoundbuf("Wing Sound", WING_SOUND_FILEPATH);
 	m_gamedata->Resmgr.LoadSoundbuf("Point Sound", POINT_SOUND_FILEPATH);
+	m_gamedata->Resmgr.LoadTexture("AI Bird", AI_BIRD);
+	m_gamedata->Resmgr.LoadTexture("AI Background", AI_SCENE);
+	m_gamedata->Resmgr.LoadTexture("AI Pipe", AI_PIPE);
 
 
 }
