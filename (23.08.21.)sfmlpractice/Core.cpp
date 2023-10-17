@@ -175,7 +175,7 @@ void Core::Update()
 		m_IsEndGame = true;
 }
 
-void Core::Render()
+void Core:: ()
 {
 	m_window->clear();
 //	m_window->draw(m_enemy);

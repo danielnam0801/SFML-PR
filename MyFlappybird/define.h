@@ -57,6 +57,13 @@ const int BIRD_SIZE = 16;
 const int TIMER_DURATION = 128;
 const float AI_GRAVITY = 0.25f;
 const float FLIP_SPEED = -4.f;
+const int BIRD_START_X = 37;
+
+const int TOTAL_INPUT_NODE = 3;
+const int TOTAL_HIDDEN_NODE = 4;
+const int TOTAL_OUTPUT_NODE = 1;
+const int MUTATION_PROBABILITY = 64;
+//돌연변이 확률
 
 enum class BIRDSTATE
 {

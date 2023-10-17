@@ -18,6 +18,8 @@ private:
 	sf::Text m_aiText;
 	std::vector<AiBird> m_vecBird;
 	int m_Score;
+	int m_generation;
+	int m_gameSpeed;
 	AiPipeManager m_pipeManager;
 };
 
