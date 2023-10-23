@@ -8,7 +8,6 @@ public:
 	void Update(float _dt) override;
 	void Render() override;
 private:
-	std::shared_ptr<Player> m_pPlayer;
-	std::shared_ptr<Player> m_pPlayer2;
+	vector<std::shared_ptr<Player>> m_vecPlayer;
 };
 

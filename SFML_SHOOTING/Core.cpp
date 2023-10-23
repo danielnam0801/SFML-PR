@@ -66,6 +66,9 @@ void Core::Init()
 
     ResMgr::GetInst()->LoadTexture("Player", PLAYER_FILEPATH);
     ResMgr::GetInst()->LoadTexture("Bullet", BULLET_FILEPATH);
+    ResMgr::GetInst()->LoadTexture("Front Gun", FRONTGUN_FILEPATH);
+
+    ResMgr::GetInst()->LoadTexture("Font", FONT_FILEPATH);
 
     SceneMgr::GetInst()->Init();
 }

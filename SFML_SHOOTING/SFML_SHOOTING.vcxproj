@@ -161,7 +161,9 @@
   <ItemGroup>
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Core.cpp" />
+    <ClCompile Include="FrontGun.cpp" />
     <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="Gun.cpp" />
     <ClCompile Include="InputMgr.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MenuScene.cpp" />
@@ -175,7 +177,9 @@
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Core.h" />
     <ClInclude Include="define.h" />
+    <ClInclude Include="FrontGun.h" />
     <ClInclude Include="GameScene.h" />
+    <ClInclude Include="Gun.h" />
     <ClInclude Include="InputMgr.h" />
     <ClInclude Include="MenuScene.h" />
     <ClInclude Include="pch.h" />

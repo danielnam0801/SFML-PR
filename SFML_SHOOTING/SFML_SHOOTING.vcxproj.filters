@@ -17,6 +17,9 @@
     <Filter Include="Object">
       <UniqueIdentifier>{f79d7426-6f12-429d-9f1d-566d79ffc65d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\FrontGun">
+      <UniqueIdentifier>{196755ad-0d89-4227-bf66-29db19b17f75}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core.cpp">
@@ -48,6 +51,10 @@
       <Filter>Game</Filter>
     </ClCompile>
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="Gun.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="FrontGun.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -84,5 +91,9 @@
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="Gun.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="FrontGun.h" />
   </ItemGroup>
 </Project>

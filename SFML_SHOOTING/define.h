@@ -7,4 +7,6 @@
 
 #define PLAYER_FILEPATH "Textures\\shipp.png"
 #define BULLET_FILEPATH "Textures\\Guns\\missileTex01p.png"
+#define FRONTGUN_FILEPATH "Textures\\Guns\\gun01.png"
 
+#define FONT_FILEPATH "Fonts\\Dosis-Light.ttf"
