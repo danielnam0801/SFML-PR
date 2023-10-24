@@ -50,11 +50,18 @@
     <ClCompile Include="Player.cpp">
       <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="Bullet.cpp" />
-    <ClCompile Include="Gun.cpp">
+    <ClCompile Include="Bullet.cpp">
       <Filter>Object</Filter>
     </ClCompile>
-    <ClCompile Include="FrontGun.cpp" />
+    <ClCompile Include="FrontGun.cpp">
+      <Filter>Object\FrontGun</Filter>
+    </ClCompile>
+    <ClCompile Include="Gun.cpp">
+      <Filter>Object\FrontGun</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -90,10 +97,17 @@
     <ClInclude Include="Player.h">
       <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="Bullet.h" />
-    <ClInclude Include="Gun.h">
+    <ClInclude Include="Bullet.h">
       <Filter>Object</Filter>
     </ClInclude>
-    <ClInclude Include="FrontGun.h" />
+    <ClInclude Include="FrontGun.h">
+      <Filter>Object\FrontGun</Filter>
+    </ClInclude>
+    <ClInclude Include="Gun.h">
+      <Filter>Object\FrontGun</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Object</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -66,9 +66,13 @@ void Core::Init()
 
     ResMgr::GetInst()->LoadTexture("Player", PLAYER_FILEPATH);
     ResMgr::GetInst()->LoadTexture("Bullet", BULLET_FILEPATH);
-    ResMgr::GetInst()->LoadTexture("Front Gun", FRONTGUN_FILEPATH);
+    ResMgr::GetInst()->LoadTexture("Laser", lASER_FILEPATH);
+    ResMgr::GetInst()->LoadTexture("Gun0", GUN0_FILEPATH);
+    ResMgr::GetInst()->LoadTexture("BG01", HYBG1_FILEPATH);
+    ResMgr::GetInst()->LoadTexture("BG02", HYBG2_FILEPATH);
+    ResMgr::GetInst()->LoadTexture("Enemy01", ENEMY01_FILEPATH);
 
-    ResMgr::GetInst()->LoadTexture("Font", FONT_FILEPATH);
+    ResMgr::GetInst()->LoadFont("Font", FONT_FILEPATH);
 
     SceneMgr::GetInst()->Init();
 }

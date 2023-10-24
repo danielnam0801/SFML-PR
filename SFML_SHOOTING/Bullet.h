@@ -3,9 +3,9 @@ class Bullet
 {
 public:
 	Bullet(Vector2f _pos, float _initvelocity, float _maxv,
-		Vector2f curVelocity, Vector2f dir);
+		 Vector2f dir, float _acc, WEAPON _weapon);
 public:
-	void Update(const float& _dt);
+	bool Update(const float& _dt);
 	void Render();
 private:
 	const Sprite& GetSprite() const { return m_Sprite; }

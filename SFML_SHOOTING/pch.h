@@ -29,3 +29,15 @@ public:                        \
 #include "WindowMgr.h"
 #include "ResMgr.h"
 #include "InputMgr.h"
+
+enum class ENEMY
+{
+    MOVEDOWN, FOLLOW, FOLLOWFAST,
+    FOLOWSHOOT, FOLOWFASTSHOOT,
+    ELITE, BOSS1,
+};
+
+enum class WEAPON
+{
+    LASER_R, MISSILE01
+};

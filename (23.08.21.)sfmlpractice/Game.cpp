@@ -48,6 +48,7 @@ void Game::UpdateCollision()
 void Game::Initvariable()
 {
 	m_pPlayer = new Player;
+	m_pPlayer = new Player;
 	m_window = nullptr;
 	//m_enemy.setPosition(sf::Vector2f(50.f, 50.f));
 	//m_enemy.setSize(sf::Vector2f(100.f, 100.f));
