@@ -1,6 +1,8 @@
 #pragma once
 #include "Bullet.h"
 #include "Enemy.h"
+#include "TextTag.h"
+
 enum class CONTORLS
 {
 	UP, DOWN, LEFT, RIGHT, SHOOT, END
@@ -44,6 +46,7 @@ private:
 	Keyboard::Key m_controls[(int)CONTORLS::END];
 
 	int m_num;
+	vector<TextTag> m_vectextTag;
 public:
 	const Sprite& GetSprite() const { return m_sprite; }
 	vector<Bullet>& GetBullet() { return m_vecbullet; }
@@ -54,6 +57,8 @@ public:
 	void Update(const float& _dt, vector<Enemy>& _vecenemy);
 	void Render();
 	void TakeDamage(int _damage);
+	bool GainExp(int _exp);
+	void TextTagUpdate(const float& _dt);
 private:
 	void MoveMent(const float& _dt);
 	void Fight(const float& _dt);

@@ -26,26 +26,26 @@ Bullet::Bullet(Vector2f _pos, float _initvelocity
 	m_sprite.setPosition(_pos);
 }
 
-bool Bullet::Update(const float& _dt, vector<Enemy>& _vecenemy)
+bool Bullet::Update(const float& _dt)
 {
 	MoveMent(_dt);
 
 	// ÃÑ¾Ë - Àû Ãæµ¹
-	for (size_t i = 0; i < _vecenemy.size();)
-	{
-		if (m_sprite.getGlobalBounds().intersects(_vecenemy[i].GetSprite().getGlobalBounds()))
-		{
-			//_vecenemy.erase(_vecenemy.begin() + i);
-			if (!_vecenemy[i].GetIsDead())
-				_vecenemy[i].TakeDamage(m_damage);
-			return true;
-		}
-		else
-			++i;
-	}
-	//if (m_sprite.getPosition().y < 0)
-	//	return true;
-	//return false;
+	//for (size_t i = 0; i < _vecenemy.size();)
+	//{
+	//	if (m_sprite.getGlobalBounds().intersects(_vecenemy[i].GetSprite().getGlobalBounds()))
+	//	{
+	//		//_vecenemy.erase(_vecenemy.begin() + i);
+	//		if (!_vecenemy[i].GetIsDead())
+	//			_vecenemy[i].TakeDamage(m_damage);
+	//		return true;
+	//	}
+	//	else
+	//		++i;
+	//}
+	////if (m_sprite.getPosition().y < 0)
+	////	return true;
+	////return false;
 	return m_sprite.getPosition().y < 0;
 }
 

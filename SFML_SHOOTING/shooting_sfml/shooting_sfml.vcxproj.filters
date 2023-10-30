@@ -17,6 +17,9 @@
     <Filter Include="Scene">
       <UniqueIdentifier>{1fbc5cf4-83f0-4f2f-a5a9-325df8aaa434}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Component">
+      <UniqueIdentifier>{c05d49bc-5403-4493-bf2c-b55e52cf7935}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core.cpp">
@@ -54,6 +57,9 @@
     </ClCompile>
     <ClCompile Include="Enemy.cpp">
       <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="TextTag.cpp">
+      <Filter>Component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -95,6 +101,9 @@
     </ClInclude>
     <ClInclude Include="Enemy.h">
       <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="TextTag.h">
+      <Filter>Component</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
