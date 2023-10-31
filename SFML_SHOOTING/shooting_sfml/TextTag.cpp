@@ -21,7 +21,19 @@ TextTag::~TextTag()
 
 void TextTag::Update(const float& _dt)
 {
-	m_text.move(m_dir * _dt * m_fSpeed);
+	if (m_IsAcc)
+	{
+		if (m_clock.getElapsedTime().asSeconds() > m_timer / 2)
+		{
+			m_text.move(m_dir * _dt * m_fSpeed * 3.f);
+		}
+		else
+		{
+			m_text.move(m_dir * _dt * m_fSpeed);
+		}
+	}else
+		m_text.move(m_dir * _dt * m_fSpeed);
+
 	if (m_clock.getElapsedTime().asSeconds() > m_timer)
 	{
 		// todo: iserase 시킨거 삭제하자!!
@@ -33,6 +45,7 @@ void TextTag::Update(const float& _dt)
 
 void TextTag::Render()
 {
+	WindowMgr::GetInst()->GetWindow().draw(m_text);
 }
 
 void TextTag::SetText(std::string _text, Vector2f _pos)

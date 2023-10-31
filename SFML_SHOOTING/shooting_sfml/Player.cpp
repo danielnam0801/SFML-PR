@@ -26,7 +26,12 @@ Player::Player(Keyboard::Key _up, Keyboard::Key _down, Keyboard::Key _left
 	m_level = 1;
 	m_exp = 0;
 	m_expNext = 10 + m_level * (m_level + 1) * 25 - 50;
-
+	m_statPoints = 0;
+	m_str = 0;
+	m_dex = 0;
+	m_endurance = 0;
+	m_defense = 0;
+	
 	m_maxVelocity = 100.f;
 	m_acceleration = 50.f;
 	m_frictionForce = 0.5f;
@@ -193,13 +198,24 @@ void Player::Update(const float& _dt, vector<Enemy>& _vecenemy)
 	if (m_damageTimer < m_damageTimerMax)
 		m_damageTimer++;
 	MoveMent(_dt);
-
+	if (isHit)
+	{
+		if (m_damageTimer >= m_damageTimerMax) {
+			m_sprite.setColor(Color::White);
+			isHit = false;
+		}
+	}
 	// 플레이어 - 적 충돌
 	for (size_t i = 0; i < _vecenemy.size();)
 	{
 		if (m_sprite.getGlobalBounds().intersects(_vecenemy[i].GetSprite().getGlobalBounds()))
 		{
-			m_hp -= _vecenemy[i].GetDamage();
+			int damage = _vecenemy[i].GetDamage();
+			m_hp -= damage;
+			m_vectextTag.push_back(TextTag("-" + std::to_string(damage), 1.f, 20.f,
+				Vector2f(m_sprite.getPosition().x, m_sprite.getPosition().y - 20.f),
+				Vector2f(0.f, 1.f), Color::Red, 30, true));
+			Hit();
 			_vecenemy.erase(_vecenemy.begin() + i);
 		}
 		else
@@ -221,10 +237,21 @@ void Player::Update(const float& _dt, vector<Enemy>& _vecenemy)
 				{
 					int damage = m_vecbullet[i].GetDamage();
 					_vecenemy[j].TakeDamage(damage);
+					m_vectextTag.push_back(TextTag("-" + std::to_string(damage),
+						1.f, 20.f
+						, Vector2f(_vecenemy[j].GetSprite().getPosition().x
+						, _vecenemy[j].GetSprite().getPosition().y - 30.f)
+						, Vector2f(0.f, -1.f), Color::Red, 30, true));
 				}
 				if (_vecenemy[j].GetIsDead())
 				{
-					m_exp += _vecenemy[j].GetHpMax();
+					int exp = _vecenemy[j].GetHpMax();
+					GainExp(exp);
+					m_vectextTag.push_back(TextTag("+" + std::to_string(exp),
+						1.f, 20.f
+						, Vector2f(m_sprite.getPosition().x
+						, m_sprite.getPosition().y - 30.f)
+						, Vector2f(0.f, -1.f), Color::Green, 20, true));
 				}
 			}
 		}
@@ -257,12 +284,21 @@ void Player::Render()
 	WindowMgr::GetInst()->GetWindow().draw(m_hpBarback);
 	WindowMgr::GetInst()->GetWindow().draw(m_hpBar);
 	WindowMgr::GetInst()->GetWindow().draw(m_expBar);
-
+	
+	for (auto& e : m_vectextTag)
+		e.Render();
 }
 
 void Player::TakeDamage(int _damage)
 {
 	m_hp -= _damage;
+}
+
+void Player::Hit()
+{
+	isHit = true;
+	m_damageTimer = 0;
+	m_sprite.setColor(Color::Red);
 }
 
 bool Player::GainExp(int _exp)
@@ -271,9 +307,13 @@ bool Player::GainExp(int _exp)
 	if (m_exp >= m_expNext)
 	{
 		m_level++;
+		m_statPoints++;
 		m_exp -= m_expNext;
 		m_expNext = m_level * (m_level + 1) * 25 - 50;
 		m_hp = m_hpMax;
+		m_vectextTag.push_back(TextTag("level up!", 1.f, 20.f,
+			Vector2f(m_sprite.getPosition().x, m_sprite.getPosition().y - 60),
+			Vector2f(0.f, 1.f), Color::Blue, 40, true));
 		return true;
 	}
 	return false;
@@ -285,7 +325,7 @@ void Player::TextTagUpdate(const float& _dt)
 	{
 		m_vectextTag[i].Update(_dt);
 		if (m_vectextTag[i].GetIsErase())
-			m_vectextTag[i].Update(_dt);
+			m_vectextTag.erase(m_vectextTag.begin() + i);
 		else
 			++i;
 	}

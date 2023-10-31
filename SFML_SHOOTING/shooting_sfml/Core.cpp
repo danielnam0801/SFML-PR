@@ -26,6 +26,7 @@ void Core::Init()
     ResMgr::GetInst()->LoadTexture("BG01", HYBG1_FILEPATH);
     ResMgr::GetInst()->LoadTexture("BG02", HYBG2_FILEPATH);
     ResMgr::GetInst()->LoadTexture("Enemy01", ENEMY01_FILEPATH);
+    ResMgr::GetInst()->LoadTexture("Enemy02", ENEMY02_FILEPATH);
 
     ResMgr::GetInst()->LoadFont("Dosis Font", DOSISFONT_FILEPATH);
 

@@ -19,8 +19,14 @@ private:
 	int m_damage; int m_damageMax;
 	Vector2f m_playercenter;
 
+	///stats
+	int m_statPoints;
+	int m_str;
+	int m_dex;
+	int m_endurance;
+	int m_defense;
 
-
+	bool isHit = false;
 	// timer
 	int m_shootTimer; // ÃÑ¾Ë µô·¹ÀÌ
 	int m_shootTimerMax;
@@ -57,6 +63,7 @@ public:
 	void Update(const float& _dt, vector<Enemy>& _vecenemy);
 	void Render();
 	void TakeDamage(int _damage);
+	void Hit();
 	bool GainExp(int _exp);
 	void TextTagUpdate(const float& _dt);
 private:

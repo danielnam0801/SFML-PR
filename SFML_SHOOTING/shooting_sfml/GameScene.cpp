@@ -70,11 +70,12 @@ void GameScene::Render()
 
 void GameScene::EnemySpawnUpdate()
 {
-	if (m_clock.getElapsedTime().asSeconds() > 3.f)
+	if (m_clock.getElapsedTime().asSeconds() > 0.5.f)
 	{
-		m_vecEnemy.push_back(Enemy(
-		Vector2f(rand() % SCREEN_WIDTH, 0),Vector2f(0.f,1.f),
-			Vector2f(0.1f,0.1f),ENEMY::MOVEDOWN, rand() % 3 + 1,1, 3));
+		m_vecEnemy.push_back(Enemy( Vector2f(rand() % SCREEN_WIDTH, 0),
+			Vector2f(0.f,1.f),
+			Vector2f(0.1f,0.1f),ENEMY::FOLLOW, rand() % 3 + 1,1, 3
+			, rand() % m_vecPlayer.size()));
 		m_clock.restart();
 	}
 }
@@ -83,7 +84,7 @@ void GameScene::EnemyUpdate(float _dt)
 	EnemySpawnUpdate();
 	for (size_t i = 0; i < m_vecEnemy.size(); )
 	{
-		if (m_vecEnemy[i].Update(_dt) || m_vecEnemy[i].GetIsDead())
+		if (m_vecEnemy[i].Update(_dt, m_vecPlayer[m_vecEnemy[i].GetFollowNum()]->GetSprite().getPosition()) || m_vecEnemy[i].GetIsDead())
 			m_vecEnemy.erase(m_vecEnemy.begin() + i);
 		else
 			i++;

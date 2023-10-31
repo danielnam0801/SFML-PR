@@ -14,6 +14,7 @@
 #define HYBG1_FILEPATH "Textures\\Background\\Space_background_01.bmp"
 #define HYBG2_FILEPATH "Textures\\Background\\Space_background_02.bmp"
 #define ENEMY01_FILEPATH "Textures\\Enemy\\enemy.png"
+#define ENEMY02_FILEPATH "Textures\\Enemy\\enemyMove.png"
 
 #define SCREEN_WIDTH 1920
 #define SCREEN_HEIGHT 1080
