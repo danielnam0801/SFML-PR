@@ -11,6 +11,10 @@ class Player
 {
 private:
 	Sprite m_sprite;
+	Sprite m_lwing;
+	Sprite m_rWing;
+	Sprite m_cPit;
+	Sprite m_aura;
 	RectangleShape m_hitBox;
 	int m_level; int m_exp; int m_expNext;
 	int m_hp; int m_hpMax;
@@ -24,7 +28,7 @@ private:
 	int m_dex; // µ¦½º
 	int m_endurance; // Áö±¸·Â
 	int m_defense; // ¹æ¾î·Â
-	
+	sf::Clock m_clock;
 
 	// timer
 	int m_shootTimer; // ÃÑ¾Ë µô·¹ÀÌ
@@ -44,6 +48,17 @@ private:
 	Vector2f m_dir;			// ¹æÇâ
 	float m_frictionForce; // ¸¶Âû·Â
 
+	int m_lwingcntmax;
+	int m_lwingcurnum;
+	int m_rwingcntmax;
+	int m_rwingcurnum;
+	int m_cpitcntmax;
+	int m_cpitcurnum;
+	int m_auracntmax;
+	int m_auracurnum;
+
+	int m_changeTimer;
+	int m_changeTimerMax;
 	// Gun
 	Sprite m_mainGun;
 	WEAPON m_eCurWeapon;
@@ -71,5 +86,9 @@ private:
 	void UiUpdate();
 	void UiRender();
 	void AccessoryUpdate();
+	void AccessoryChange();
+	void TimerUpdate(const float& _dt);
+	void CollisionEnemy(const float& _dt, vector<Enemy>& _vecenemy);
+	void BulletCollisionEnemy(const float& _dt, vector<Enemy>& _vecenemy);
 };
 

@@ -27,6 +27,26 @@ void Core::Init()
     ResMgr::GetInst()->LoadTexture("BG02", HYBG2_FILEPATH);
     ResMgr::GetInst()->LoadTexture("Enemy01", ENEMY01_FILEPATH);
 
+    for (int i = 1; i <= 11; i++)
+    {
+        ResMgr::GetInst()->LoadTexture("AURA" + std::to_string(i), AURA_FILEPATH + std::to_string(i) + ".png");
+    }
+
+    for (int i = 1; i <= 16; i++)
+    {
+        ResMgr::GetInst()->LoadTexture("CPIT" + std::to_string(i), CPIT_FILEPATH + std::to_string(i) + ".png");
+    }
+
+    for (int i = 1; i <= 13; i++)
+    {
+        ResMgr::GetInst()->LoadTexture("WINGLEFT" + std::to_string(i), WINGLEFT_FILEPATH + std::to_string(i) + ".png");
+    }
+
+    for (int i = 1; i <= 13; i++)
+    {
+        ResMgr::GetInst()->LoadTexture("WINGRIGHT" + std::to_string(i), WINGRIGHT_FILEPATH + std::to_string(i) + ".png");
+    }
+
     ResMgr::GetInst()->LoadFont("Dosis Font", DOSISFONT_FILEPATH);
 
     SceneMgr::GetInst()->Init();

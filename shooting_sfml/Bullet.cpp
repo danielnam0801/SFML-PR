@@ -17,6 +17,11 @@ Bullet::Bullet(Vector2f _pos, float _initvelocity
 		m_sprite.setScale(0.07f, 0.07f);
 		m_damage = 2;
 		break;
+	case WEAPON::MISSILE02:
+		m_sprite.setTexture(ResMgr::GetInst()->GetTexture("Bullet"));
+		m_sprite.setScale(0.07f, 0.07f);
+		m_damage = 2;
+		break;
 	}
 	m_maxVelocity = _maxvelocity;
 	m_accerlation = _acc;

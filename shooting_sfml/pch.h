@@ -37,5 +37,5 @@ enum class ENEMY
 };
 enum class WEAPON
 {
-    LASER_R, MISSILE01
+    LASER_R, MISSILE01, MISSILE02
 };

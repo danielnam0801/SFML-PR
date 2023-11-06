@@ -15,5 +15,9 @@
 #define HYBG2_FILEPATH "Textures\\Background\\Space_background_02.bmp"
 #define ENEMY01_FILEPATH "Textures\\Enemy\\enemy.png"
 
+#define AURA_FILEPATH "Textures\\Accessories\\aura"
+#define CPIT_FILEPATH "Textures\\Accessories\\cpit"
+#define WINGLEFT_FILEPATH "Textures\\Accessories\\wingLeft"
+#define WINGRIGHT_FILEPATH "Textures\\Accessories\\wingRight"
 #define SCREEN_WIDTH 1920
 #define SCREEN_HEIGHT 1080

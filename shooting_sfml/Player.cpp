@@ -13,12 +13,20 @@ Player::Player(Keyboard::Key _up, Keyboard::Key _down, Keyboard::Key _left
 	m_mainGun.setOrigin(m_mainGun.getGlobalBounds().width / 2
 					,m_mainGun.getGlobalBounds().height / 2);
 
+
+	m_aura.setTexture(ResMgr::GetInst()->GetTexture("AURA1"));
+	m_cPit.setTexture(ResMgr::GetInst()->GetTexture("CPIT1"));
+	m_lwing.setTexture(ResMgr::GetInst()->GetTexture("WINGLEFT1"));
+	m_aura.setTexture(ResMgr::GetInst()->GetTexture("WINGRIGHT1"));
+
 	m_num = _num;
 	// value init
 	m_shootTimerMax = 25;
 	m_shootTimer = m_shootTimerMax;
 	m_damageTimerMax = 10;
 	m_damageTimer = m_damageTimerMax;
+	m_changeTimer = 10;
+	m_changeTimerMax = m_changeTimer;
 	m_hpMax = 10;
 	m_hp = m_hpMax;
 	m_statPoints = 0;
@@ -38,9 +46,43 @@ Player::Player(Keyboard::Key _up, Keyboard::Key _down, Keyboard::Key _left
 	m_controls[(int)CONTORLS::RIGHT] = _right;
 	m_controls[(int)CONTORLS::SHOOT] = _shoot;
 
-	m_eCurWeapon = WEAPON::LASER_R;
+	m_eCurWeapon = WEAPON::MISSILE02;
 	m_text.setOrigin(m_text.getGlobalBounds().width + 50.f, m_text.getGlobalBounds().height);
 	m_text.setStyle(sf::Text::Style::Bold);
+
+	Vector2f vec = Vector2f(m_playercenter.x + 10, m_playercenter.y + 20);
+	m_aura.setTexture(ResMgr::GetInst()->GetTexture("AURA8"));
+	m_aura.setOrigin(m_aura.getGlobalBounds().width / 2,
+		m_aura.getGlobalBounds().height / 2);
+	m_aura.setPosition(vec);
+	float scale = 0.7f;
+	m_aura.setScale(scale, scale);
+	m_auracntmax = 11;
+	m_auracurnum = 8;
+
+	m_cPit.setTexture(ResMgr::GetInst()->GetTexture("CPIT2"));
+	m_cPit.setOrigin(m_cPit.getGlobalBounds().width / 2,
+		m_cPit.getGlobalBounds().height / 2);
+	m_cPit.setPosition(vec);
+	m_cPit.setScale(scale, scale);
+	m_cpitcntmax = 16;
+	m_cpitcurnum = 2;
+
+	m_lwing.setTexture(ResMgr::GetInst()->GetTexture("WINGLEFT2"));
+	m_lwing.setOrigin(m_lwing.getGlobalBounds().width / 2,
+		m_lwing.getGlobalBounds().height / 2);
+	m_lwing.setPosition(vec);
+	m_lwing.setScale(scale, scale);
+	m_lwingcntmax = 13;
+	m_lwingcurnum = 2;
+
+	m_rWing.setTexture(ResMgr::GetInst()->GetTexture("WINGRIGHT2"));
+	m_rWing.setOrigin(m_rWing.getGlobalBounds().width / 2,
+		m_rWing.getGlobalBounds().height / 2);
+	m_rWing.setPosition(vec);
+	m_rWing.setScale(scale, scale);
+	m_rwingcntmax = 13;
+	m_rwingcurnum = 2;
 	//m_hp -= 1;
 	UiInit();
 }
@@ -134,10 +176,10 @@ void Player::Fight(const float& _dt)
 		{
 		case WEAPON::LASER_R:
 		{
-			m_vecbullet.push_back(Bullet(Vector2f(m_playercenter.x - 5.f, m_playercenter.y -70.f),
-				2.f, 50.f, Vector2f(0.f, -1.f), 50.f,WEAPON::LASER_R));
+			m_vecbullet.push_back(Bullet(Vector2f(m_playercenter.x - 5.f, m_playercenter.y - 70.f),
+				2.f, 50.f, Vector2f(0.f, -1.f), 50.f, WEAPON::LASER_R));
 		}
-			break;
+		break;
 		case WEAPON::MISSILE01:
 		{
 			//m_vecbullet.push_back(Bullet(Vector2f(m_playercenter.x - 20.f, m_playercenter.y - 70.f),
@@ -152,10 +194,24 @@ void Player::Fight(const float& _dt)
 				2.f, 50.f, Vector2f(0.25f, -1.f), 20.f, WEAPON::MISSILE01));
 
 		}
+		break;
+		case WEAPON::MISSILE02:
+		{
+			Vector2f circlebullet[12] =
+			{ {0,3},{0,-3},{3,0},{-3,0},
+			  {3,1},{3,-1},{-3,1},{-3,-1},
+			{2,2},{-2,-2},{-2,2},{2,-2} };
+			for (int i = 0; i < 12; ++i)
+			{
+				m_vecbullet.push_back(Bullet(Vector2f(m_playercenter.x - 30.f,
+					m_playercenter.y - 70.f),
+					2.f, 50.f, Vector2f(circlebullet[i]), 2.f, WEAPON::MISSILE02));
+			}
 			break;
 		}
 		m_mainGun.move(0.f, 400.f * _dt);
 		m_shootTimer = 0; // 타이머 리셋
+		}
 	}
 }
 
@@ -186,36 +242,98 @@ void Player::UiRender()
 
 void Player::AccessoryUpdate()
 {
+	AccessoryChange();
+	
 	m_mainGun.setPosition(m_playercenter);
+	m_lwing.setPosition(m_playercenter.x + 2, m_playercenter.y + 45);
+	m_rWing.setPosition(m_playercenter.x + 2, m_playercenter.y + 45);
+	m_aura.setPosition(m_playercenter.x + 2, m_playercenter.y + 45);
+	m_cPit.setPosition(m_playercenter.x + 2, m_playercenter.y + 45);
 }
 
-void Player::Update(const float& _dt, vector<Enemy>& _vecenemy)
+void Player::AccessoryChange()
 {
-	// Update Timer
+	if (m_changeTimer > m_changeTimerMax)
+	{
+		if (Keyboard::isKeyPressed(Keyboard::F1))
+		{
+			if (m_lwingcurnum < m_lwingcntmax)
+				m_lwingcurnum++;
+			else
+				m_lwingcurnum = 1;
+			m_lwing.setTexture(ResMgr::GetInst()->GetTexture("WINGLEFT" + std::to_string(m_lwingcurnum)));
+		}if (Keyboard::isKeyPressed(Keyboard::F2))
+		{
+			if (m_rwingcurnum < m_rwingcntmax)
+				m_rwingcurnum++;
+			else
+				m_rwingcurnum = 1;
+			m_rWing.setTexture(ResMgr::GetInst()->GetTexture("WINGRIGHT" + std::to_string(m_rwingcurnum)));
+		}if (Keyboard::isKeyPressed(Keyboard::F3))
+		{
+			if (m_cpitcurnum < m_cpitcntmax)
+				m_cpitcurnum++;
+			else
+				m_cpitcurnum = 1;
+			m_cPit.setTexture(ResMgr::GetInst()->GetTexture("CPIT" + std::to_string(m_cpitcurnum)));
+		}if (Keyboard::isKeyPressed(Keyboard::F4))
+		{
+			if (m_auracurnum < m_auracntmax)
+				m_auracurnum++;
+			else
+				m_auracurnum = 1;
+			m_aura.setTexture(ResMgr::GetInst()->GetTexture("AURA" + std::to_string(m_auracurnum)));
+		}
+		m_changeTimer = 0;
+	}
+}
+
+void Player::TimerUpdate(const float& _dt)
+{
 	if (m_shootTimer < m_shootTimerMax)
 		m_shootTimer++;
 	if (m_damageTimer < m_damageTimerMax)
 		m_damageTimer++;
-	MoveMent(_dt);
+	if (m_shootTimer < m_shootTimerMax)
+		m_shootTimer++;
+}
 
+void Player::CollisionEnemy(const float& _dt, vector<Enemy>& _vecenemy)
+{
 	// 플레이어 - 적 충돌
-	for (size_t i = 0; i < _vecenemy.size();)
+	for (size_t i = 0; i < _vecenemy.size(); ++i)
 	{
-		if (m_sprite.getGlobalBounds().intersects(_vecenemy[i].GetSprite().getGlobalBounds()))
+		if (m_clock.getElapsedTime().asSeconds() > 2.f)
 		{
-			int damage = _vecenemy[i].GetDamage();
-			m_hp -= damage;
-			m_vectextTag.push_back(TextTag("-"+ std::to_string(damage), 1.f, 20.f,
-				Vector2f(m_sprite.getPosition().x, m_sprite.getPosition().y - 20.f),
-				Vector2f(0.f,1.f),Color::Red, 30,true));
-
-			_vecenemy.erase(_vecenemy.begin() + i);
+			if (m_sprite.getGlobalBounds().intersects(_vecenemy[i].GetSprite().getGlobalBounds()))
+			{
+				int damage = _vecenemy[i].GetDamage();
+				m_hp -= damage;
+				m_vectextTag.push_back(TextTag("-" + std::to_string(damage), 1.f, 20.f,
+					Vector2f(m_sprite.getPosition().x, m_sprite.getPosition().y - 20.f),
+					Vector2f(0.f, 1.f), Color::Red, 30, true));
+				m_lwing.setColor(Color::Red);
+				m_rWing.setColor(Color::Red);
+				m_cPit.setColor(Color::Red);
+				m_sprite.move(0.f, m_dir.y * 100.f * _dt);
+				m_clock.restart();
+			}
+			else
+			{
+				m_lwing.setColor(Color::White);
+				m_rWing.setColor(Color::White);
+				m_cPit.setColor(Color::White);
+			}
 		}
-		else
-			++i;
+		//_vecenemy.erase(_vecenemy.begin() + i);
 	}
 
-	// 플레이어의 총알 - 적 충돌
+	//else
+	//    ++i;
+}
+
+void Player::BulletCollisionEnemy(const float& _dt, vector<Enemy>& _vecenemy)
+{
 	bool IsBulletRemoved = false;
 	for (size_t i = 0; i < m_vecbullet.size();)
 	{
@@ -239,8 +357,16 @@ void Player::Update(const float& _dt, vector<Enemy>& _vecenemy)
 				if (_vecenemy[j].GetIsDead())
 				{
 					int exp = _vecenemy[j].GetHpMax();
- 					//m_exp += exp;
-					GainExp(exp);
+					//m_exp += exp;
+					if(GainExp(exp));
+					{
+						m_vectextTag.push_back(TextTag("LEVEL UP!",
+							1.f, 20.f,
+							Vector2f(m_sprite.getPosition().x,
+								m_sprite.getPosition().y - 60.f),
+							Vector2f(-1.f, 0.f), Color::Cyan, 20, true));
+
+					}
 					m_vectextTag.push_back(TextTag("+" + std::to_string(exp),
 						1.f, 20.f,
 						Vector2f(m_sprite.getPosition().x,
@@ -249,7 +375,7 @@ void Player::Update(const float& _dt, vector<Enemy>& _vecenemy)
 				}
 			}
 		}
-			//m_vecbullet.erase(m_vecbullet.begin() + i);
+		//m_vecbullet.erase(m_vecbullet.begin() + i);
 		if (IsBulletRemoved)
 		{
 			m_vecbullet.erase(m_vecbullet.begin() + i);
@@ -258,6 +384,18 @@ void Player::Update(const float& _dt, vector<Enemy>& _vecenemy)
 		else
 			++i;
 	}
+}
+
+void Player::Update(const float& _dt, vector<Enemy>& _vecenemy)
+{
+	// Update Timer
+	TimerUpdate(_dt);
+	MoveMent(_dt);
+
+	// 플레이어 - 적 충돌
+	CollisionEnemy(_dt, _vecenemy);
+	// 플레이어의 총알 - 적 충돌
+	BulletCollisionEnemy(_dt, _vecenemy);
 
 	TextTagUpdate(_dt);
 	m_playercenter = Vector2f(m_sprite.getPosition().x + 
@@ -272,6 +410,10 @@ void Player::Render()
 {
 	for (auto& e : m_vecbullet)
 		e.Render();
+	WindowMgr::GetInst()->GetWindow().draw(m_lwing);
+	WindowMgr::GetInst()->GetWindow().draw(m_rWing);
+	WindowMgr::GetInst()->GetWindow().draw(m_cPit);
+	WindowMgr::GetInst()->GetWindow().draw(m_aura);
 	WindowMgr::GetInst()->GetWindow().draw(m_mainGun);
 	WindowMgr::GetInst()->GetWindow().draw(m_sprite);
 	WindowMgr::GetInst()->GetWindow().draw(m_text);
@@ -300,9 +442,16 @@ bool Player::GainExp(int _exp)
 			Vector2f(-1.f, 0.f), Color::Cyan, 40, true));
 		m_level++;
 		m_statPoints++;
+		m_str++;
+		m_dex++;
+		m_endurance++;
+		m_defense++;
 		m_exp -= m_expNext;
 		m_expNext = m_level * (m_level + 1) * 25 - 50;
 		m_hp = m_hpMax;
+		m_hpMax = 10.f + m_endurance * 5;
+		m_damage = m_str + 1;
+		m_damageMax = m_str * 2 + 2;
 		return true;
 	}
 	return false;

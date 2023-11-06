@@ -22,6 +22,11 @@ public:
 	const int& GetHpMax() const { return m_hpMax; }
 	const bool& GetIsDead() const { return m_hp <= 0; }
 	const int& GetFollownum() const { return m_followPlayernum; }
+	void SetFollownum(int _num) {
+		m_followPlayernum = _num;
+		if (m_followPlayernum < 0)
+			m_followPlayernum = 0;
+	}
 public:
 	float vectorLength(Vector2f _vec)
 	{
