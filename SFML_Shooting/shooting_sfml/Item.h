@@ -3,12 +3,12 @@ class Item
 {
 public:
 	Item(Vector2f _pos, Vector2f _dir,
-		ITEMTYPE _eType, float _aliveTime);
-	void Update();
+		ITEM_TYPE _eType, float _aliveTime);
+	void Update(const float& _dt);
 	void Render();
 private:
 	Sprite m_sprite;
-	ITEMTYPE m_eType;
+	ITEM_TYPE m_eType;
 	Vector2f m_dir;
 	float m_alivetimer;
 	float m_alivetimermax;

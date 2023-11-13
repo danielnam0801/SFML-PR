@@ -7,10 +7,10 @@ void GameScene::Init()
 //	m_pPlayer = std::make_shared<Player>();
 	// 1p
 	m_vecPlayer.push_back(std::make_shared<Player>
-		(Keyboard::W, Keyboard::S, Keyboard::A, Keyboard::D, Keyboard::Space,1));
+		(Keyboard::W, Keyboard::S, Keyboard::A, Keyboard::D, Keyboard::Space, Keyboard::LControl, 1));
 	// 2p
 	m_vecPlayer.push_back(std::make_shared<Player>
-		(Keyboard::Up, Keyboard::Down, Keyboard::Left, Keyboard::Right, Keyboard::Return,2));
+		(Keyboard::Up, Keyboard::Down, Keyboard::Left, Keyboard::Right, Keyboard::Return, Keyboard::L, 2));
 	
 	/*m_vecEnemy.push_back(Enemy(
 	Vector2f(WindowMgr::GetInst()->GetWindow().getSize().x/2, 0),
@@ -27,6 +27,10 @@ void GameScene::Init()
 	m_gameOverText.setFillColor(Color::Red);
 	m_gameOverText.setString("GAME OVER!!");
 	m_gameOverText.setPosition(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+
+	m_gameStage = GAME_STAGE::NONE;
+	m_stageWave = 0;
+	m_IsStageClear = true;
 }
 
 void GameScene::Update(float _dt)
@@ -78,6 +82,82 @@ void GameScene::Render()
 
 void GameScene::EnemySpawnUpdate()
 {
+	if ( m_IsStageClear)
+	{
+		int stage = (int)m_gameStage;
+		m_gameStage = (GAME_STAGE)(++stage);
+		m_vecTextTag.push_back(TextTag("Stage: " + std::to_string(stage), 1.f, 30.f,
+			Vector2f(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 5),
+			Vector2f(1.f, 0.f), Color::White, 80, true));
+		m_IsStageClear = false;
+		m_stageWave = 0;
+	}
+	switch (m_gameStage)
+	{
+	case GAME_STAGE::STAGE01:
+		if (m_clock.getElapsedTime().asSeconds() > 1.f)
+		{
+			for (int i = 0; i < 4; ++i)
+			{
+				m_vecEnemy.push_back(Enemy(Vector2f(rand() % SCREEN_WIDTH, 10.f),
+					Vector2f(0.f, 1.f), Vector2f(0.1f, 0.1f), ENEMY::MOVEDOWN,
+					rand() % 3 + 1, 1, 2, rand() % m_vecPlayer.size() % 2));
+			}
+			m_clock.restart();
+			m_stageWave++;
+		}
+		if(m_stageWave >= 2)
+		{
+			m_IsStageClear = true;
+		}
+		break;
+	case GAME_STAGE::STAGE02:
+		if (m_clock.getElapsedTime().asSeconds() > 1.f)
+		{
+			for (int i = 0; i < 6; ++i)
+			{
+				m_vecEnemy.push_back(Enemy(Vector2f(rand() % SCREEN_WIDTH, 10.f),
+					Vector2f(0.f, 1.f), Vector2f(0.1f, 0.1f), (ENEMY)(rand() % 2),
+					rand() % 4 + 2, 2, 3, rand() % m_vecPlayer.size() % 2));
+			}
+			m_clock.restart();
+			m_stageWave++;
+		}
+		if (m_stageWave >= 3)
+		{
+			m_IsStageClear = true;
+		}
+		break;
+	case GAME_STAGE::STAGE03:
+		if (m_clock.getElapsedTime().asSeconds() > 1.f)
+		{
+			for (int i = 0; i < 4; ++i)
+			{
+				m_vecEnemy.push_back(Enemy(Vector2f(rand() % SCREEN_WIDTH, 10.f),
+					Vector2f(0.f, 1.f), Vector2f(0.1f, 0.1f), ENEMY(rand()%4),
+					rand() % 4 + 2, 2, 3, rand() % m_vecPlayer.size() % 2));
+			}
+			m_clock.restart();
+			m_stageWave++;
+		}
+		if (m_stageWave >= 4)
+		{
+			m_IsStageClear = true;
+		}
+		break;
+	case GAME_STAGE::ELITE:
+		m_vecEnemy.push_back(Enemy(Vector2f(SCREEN_WIDTH / 2, 100.f),
+			Vector2f(0.f, 1.f), Vector2f(0.1f, 0.1f), ENEMY(rand() % 4),
+			rand() % 4 + 2, 2, 3, rand() % m_vecPlayer.size() % 2));
+		break;
+	case GAME_STAGE::BOSS:
+		break;
+	case GAME_STAGE::END:
+		break;
+	default:
+		break;
+	}
+	
 	if (m_clock.getElapsedTime().asSeconds() > 0.5f)
 	{
 		m_vecEnemy.push_back(Enemy(
@@ -105,10 +185,23 @@ void GameScene::UIUpdate()
 			+ "Timer : " + std::to_string(m_vecPlayer[0]->GetTimer()) + "\n"
 		);
 	}
+
+	for (size_t i = 0; i < m_vecTextTag.size();)
+	{
+		if (m_vecTextTag[i].GetIsErase())
+		{
+			m_vecTextTag.erase(m_vecTextTag.begin() + i);
+		}
+		else
+			i++;
+	}
+
+	
 }
-void GameScene::EnemyUpdate(float _dt)
-{
-	EnemySpawnUpdate();
+void GameScene::EnemyUpdate(float _dt){
+
+	if (m_vecEnemy.empty())
+		EnemySpawnUpdate(); 
 	for (size_t i = 0; i < m_vecEnemy.size(); )
 	{
 		if (m_vecPlayer.size() < 2)

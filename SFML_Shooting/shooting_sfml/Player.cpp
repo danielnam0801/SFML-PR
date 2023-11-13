@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "Player.h"
 Player::Player(Keyboard::Key _up, Keyboard::Key _down, Keyboard::Key _left
-	, Keyboard::Key _right, Keyboard::Key _shoot, int _num)
+	, Keyboard::Key _right, Keyboard::Key _shoot, Keyboard::Key _bomb, int _num)
 {
 	m_timermax = 10.f;
 	m_timer = 0;
@@ -80,6 +80,7 @@ Player::Player(Keyboard::Key _up, Keyboard::Key _down, Keyboard::Key _left
 	m_controls[(int)CONTORLS::LEFT] = _left;
 	m_controls[(int)CONTORLS::RIGHT] = _right;
 	m_controls[(int)CONTORLS::SHOOT] = _shoot;
+	m_controls[(int)CONTORLS::BOMB] = _bomb;
 
 	m_eCurWeapon = WEAPON::LASER_R;
 	m_text.setOrigin(m_text.getGlobalBounds().width + 50.f, m_text.getGlobalBounds().height);
@@ -202,6 +203,11 @@ void Player::MoveMent(const float& _dt)
 
 void Player::Fight(const float& _dt)
 {
+	if (Keyboard::isKeyPressed(m_controls[(int)CONTORLS::BOMB]))
+	{
+		m_vecbullet.push_back(Bullet(Vector2f(m_playercenter.x, m_playercenter.y),
+			2.f, 50.f, Vector2f(0.f, -1.f), 20.f, WEAPON::BOMB));
+	}
 	if (Keyboard::isKeyPressed(m_controls[(int)CONTORLS::SHOOT])
 		&& m_shootTimer >= m_shootTimerMax)
 	{
@@ -236,15 +242,50 @@ void Player::Fight(const float& _dt)
 					2.f, 50.f, Vector2f(circlebullet[i]), 2.f, WEAPON::MISSILE02));
 			}
 		}
+		case WEAPON::DOUBLE:
+		{
+			m_vecbullet.push_back(Bullet(Vector2f(m_playercenter.x - 5.f, m_playercenter.y - 70.f),
+				2.f, 50.f, Vector2f(0.f, -1.f), 50.f, WEAPON::LASER_R));
+			m_vecbullet.push_back(Bullet(Vector2f(m_playercenter.x + 5.f, m_playercenter.y - 70.f),
+				2.f, 50.f, Vector2f(0.f, -1.f), 50.f, WEAPON::LASER_R));
+		}
+		case WEAPON::TRIPLE:
+		{
+
+		}
 		break;
+		case WEAPON::BOMB:
+		{
+		
 		}
 		m_mainGun.move(0.f, 400.f * _dt);
 		m_shootTimer = 0; // 타이머 리셋
+		}
+		if (m_bombClock.getElapsedTime().asSeconds() >= 1.f)
+		{
+			for (size_t i = 0; i < m_vecbullet.size();)
+			{
+				if (m_vecbullet[i].GetType() == WEAPON::BOMB)
+				{
+					Vector2f circlebullet[16] = {
+				{0,3},{0,-3}, {3,0}, {-3,0},
+				{1,3}, {1,-3}, {-1,3}, {-1,-3},
+				{3,1}, {3,-1}, {-3,1}, {-3,-1},
+				{2,2}, {-2,-2}, {-2,2}, {2,-2} };
+					for (int j = 0; j < 16; i++)
+					{
+						m_vecbullet.push_back(Bullet(Vector2f(m_playercenter.x, m_playercenter.y - 120.f),
+							2.f, 50.f, Vector2f(circlebullet[j]), 2.f, WEAPON::MISSILE02));
+					}
+					m_vecbullet.erase(m_vecbullet.begin() + i);
+				}
+				else
+					i++;
+			}
+		}
+		
 	}
 }
-
-
-
 void Player::UiUpdate()
 {
 	m_text.setPosition(m_sprite.getPosition().x + 10,
@@ -515,6 +556,34 @@ void Player::TextTagUpdate(const float& _dt)
 			m_vectextTag.erase(m_vectextTag.begin() + i);
 		else
 			++i;
+	}
+}
+
+void Player::ItemAbillity(ITEM_TYPE _eType)
+{
+	switch (_eType)
+	{
+	case ITEM_TYPE::HP_KIT:
+		m_hp = m_hpMax;
+		break;
+	case ITEM_TYPE::STAT_POINT:
+		m_statPoints += 1;
+		break;
+	case ITEM_TYPE::HPMAXUP:
+		m_hpMax += 20;
+		break;
+	case ITEM_TYPE::DOUBLE:
+		m_eCurWeapon = WEAPON::DOUBLE;
+		break;
+	case ITEM_TYPE::TRIPLE:
+		m_eCurWeapon = WEAPON::TRIPLE;
+		break;
+	case ITEM_TYPE::PIERCING:
+		break;
+	case ITEM_TYPE::SHILED:
+		break;
+	default:
+		break;
 	}
 }
 

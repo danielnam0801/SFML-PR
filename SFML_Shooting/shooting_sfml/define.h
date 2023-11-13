@@ -13,6 +13,7 @@
 #define ENEMYBULLET_FILEPATH "Textures\\Guns\\roundBulletRed.png"
 
 #define GUN01_FILEPATH "Textures\\Guns\\gun01.png"
+#define BOMB_FILEPATH "Textures\\Guns\\bomb.png"
 #define HYBG1_FILEPATH "Textures\\Background\\Space_background_01.bmp"
 #define HYBG2_FILEPATH "Textures\\Background\\Space_background_02.bmp"
 #define ENEMY01_FILEPATH "Textures\\Enemy\\enemy.png"

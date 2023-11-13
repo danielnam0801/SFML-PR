@@ -4,7 +4,7 @@
 #include "TextTag.h"
 enum class CONTORLS
 {
-	UP, DOWN, LEFT, RIGHT, SHOOT, END
+	UP, DOWN, LEFT, RIGHT, SHOOT, BOMB, END
 };
 
 class Player
@@ -54,6 +54,7 @@ private:
 	sf::RectangleShape m_hpBar;
 	sf::RectangleShape m_hpBarback;
 	sf::RectangleShape m_expBar;
+	sf::Clock m_bombClock;
 
 	vector<Bullet> m_vecbullet;
 	// ¼Óµµ
@@ -83,12 +84,13 @@ public:
 	vector<Bullet>& GetBullet() { return m_vecbullet; }
 public:
 	Player(Keyboard::Key _up, Keyboard::Key _down, Keyboard::Key _left
-		  ,Keyboard::Key _right, Keyboard::Key _shoot, int _num);
+		  ,Keyboard::Key _right, Keyboard::Key _shoot, Keyboard::Key _bomb, int _num);
 	void Update(const float& _dt, vector<Enemy>& _vecenemy);
 	void Render();
 	void TakeDamage(int _damage);
 	bool GainExp(int _exp);
-	void TextTagUpdate(const float& _dt);\
+	void TextTagUpdate(const float& _dt);
+	void ItemAbillity(ITEM_TYPE _eType);
 public:
 		float vectorLength(Vector2f _vec)
 		{

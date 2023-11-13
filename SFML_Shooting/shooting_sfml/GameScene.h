@@ -2,6 +2,7 @@
 #include "Scene.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "TextTag.h"
 class GameScene : public Scene
 {
 public:
@@ -15,6 +16,7 @@ private:
 	void UIUpdate();
 private:
 	//std::shared_ptr<Player> m_pPlayer;
+	std::vector<TextTag> m_vecTextTag;
 	std::vector<std::shared_ptr<Player>> m_vecPlayer;
 	std::vector<Enemy> m_vecEnemy;
 	Sprite m_background;
@@ -22,5 +24,9 @@ private:
 	sf::Clock m_clock;
 	sf::Text m_gameOverText;
 	sf::Text m_gameInfoText;
+private:
+	int m_stageWave;
+	bool m_IsStageClear;
+	GAME_STAGE m_gameStage;
 };
 

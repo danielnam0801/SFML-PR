@@ -37,6 +37,12 @@ Bullet::Bullet(Vector2f _pos, float _initvelocity
 		m_damage = rand() % 2 + 1;
 
 	}
+	case WEAPON::BOMB:
+	{
+		m_sprite.setTexture(ResMgr::GetInst()->GetTexture("Bomb"));
+		m_sprite.setOrigin(m_sprite.getGlobalBounds().width / 2, m_sprite.getGlobalBounds().height / 2);
+		m_damage = 5;
+	}
 		break;
 	}
 	m_maxVelocity = _maxvelocity;
@@ -85,6 +91,8 @@ void Bullet::MoveMent(const float& _dt)
 	case WEAPON::SPLIT:
 		break;
 	case WEAPON::ROTATE:
+		break;
+	case WEAPON::BOMB:
 		break;
 	default:
 		break;

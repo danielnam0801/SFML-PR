@@ -10,6 +10,7 @@ public:
 private:
 	void MoveMent(const float& _dt);
 public:
+	const WEAPON& GetType() const { return m_weapon; }
 	const Sprite& GetSprite() const { return m_sprite; }
 	const int& GetDamage() const { return m_damage; }
 private:

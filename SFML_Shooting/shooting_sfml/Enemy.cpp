@@ -39,6 +39,8 @@ Enemy::Enemy(Vector2f _pos, Vector2f _dir, Vector2f _scale, ENEMY _eType,
 		m_sprite.setPosition(_pos);
 		break;
 	case ENEMY::ELITE:
+		m_centerpos = _pos;
+		m_fMaxDis = SCREEN_WIDTH - m_sprite.getGlobalBounds().width * 2;
 		break;
 	case ENEMY::BOSS1:
 		break;
@@ -152,6 +154,37 @@ void Enemy::MoveMent(const float& _dt, Vector2f _playerpos)
 	case ENEMY::FOLLOWFASTSHOOT:
 		break;
 	case ENEMY::ELITE:
+	{
+		switch (m_eState)
+		{
+		case ENEMY_STATE::IDLE:
+			Vector2f curpos = m_sprite.getPosition();
+			curpos.x += 500.f * _dt * m_dir.x;
+			float fDist = abs(m_centerpos.x - curpos.x) - m_fMaxDis;
+			if (fDist > 0.f)
+			{
+				m_dir.x *= -1.f;
+				curpos.x += fDist * m_dir.x;
+			}
+			m_sprite.setPosition(curpos);
+			m_eState = ENEMY_STATE::ATTACTK_CIRCLE;
+			break;
+		case ENEMY_STATE::ATTACTK_CIRCLE:
+			{
+				if (m_shootTimer > m_shootTimerMax)
+				{
+
+				}
+			}
+			break;
+		case ENEMY_STATE::ATTACTK_DEFAULT:
+			break;
+		case ENEMY_STATE::ATTACK_AROUND:
+			break;
+		default:
+			break;
+		}
+	}
 		break;
 	case ENEMY::BOSS1:
 		break;

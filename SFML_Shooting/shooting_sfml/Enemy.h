@@ -35,6 +35,9 @@ public:
 		return _vec / _length;
 	}
 private:
+	float m_fMaxDis;
+	Vector2f m_centerpos;
+	ENEMY_STATE m_eState;
 	int m_followPlayernum;
 	int m_damageTimer;	int m_damageTimerMax;
 	float m_shootTimer;	float m_shootTimerMax;

@@ -27,6 +27,8 @@ void Core::Init()
     ResMgr::GetInst()->LoadTexture("Rotate", LASER_FILEPATH);
 
     ResMgr::GetInst()->LoadTexture("Gun01", GUN01_FILEPATH);
+    ResMgr::GetInst()->LoadTexture("Bomb", BOMB_FILEPATH);
+
     ResMgr::GetInst()->LoadTexture("BG01", HYBG1_FILEPATH);
     ResMgr::GetInst()->LoadTexture("BG02", HYBG2_FILEPATH);
     ResMgr::GetInst()->LoadTexture("Enemy01", ENEMY01_FILEPATH);
