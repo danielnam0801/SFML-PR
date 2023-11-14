@@ -14,6 +14,8 @@
 using std::vector;
 using std::map;
 using std::string;
+using std::shared_ptr;
+//using namespace std;
 using namespace sf;
 #define SINGLE(type)        \
 private:                    \
@@ -31,20 +33,22 @@ public:                        \
 #include "InputMgr.h"
 enum class ENEMY
 {
-    MOVEDOWN, FOLLOW, FOLLOWSHOOT,
-    FOLLOWFAST, FOLLOWFASTSHOOT,
+    MOVEDOWN, FOLLOW, FOLLOWFAST,
+    FOLLOWSHOOT, FOLLOWFASTSHOOT,
     ELITE, BOSS1,
 };
 enum class WEAPON
 {
-    LASER_R, MISSILE01, MISSILE02, ENEMYBULLET, SPLIT, ROTATE, DOUBLE, TRIPLE, BOMB
+    LASER_R, MISSILE01, MISSILE02,
+    ENEMY_BULLET, SPLIT, ROTATE, BOMB,
+    ENEMY_CIRCLEBULLET
 };
 
 enum class ITEM_TYPE
 {
-    HP_KIT, STAT_POINT,
+    HPKIT, STAT_POINT,
     HPMAXUP, DOUBLE, TRIPLE,
-    PIERCING, SHILED
+    PIERCING, SHIELD
 };
 
 enum class GAME_STAGE
@@ -53,8 +57,9 @@ enum class GAME_STAGE
     ELITE, BOSS, END
 };
 
-enum class ELITE_STAGE
+enum class ENEMY_STATE
 {
-    IDLE, ATTACTK_DEFAULT,
-    ATTACTK_CIRCLE, ATTACK_AROUND
+    IDLE, ATTACK_DEFAULT,
+    ATTACK_CIRCLE, ATTACK_AROUND,
+    ATTACK_PLAYER, BACK,
 };

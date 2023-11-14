@@ -21,19 +21,15 @@ void Core::Init()
     ResMgr::GetInst()->LoadTexture("Player", PLAYER_FILEPATH);
     ResMgr::GetInst()->LoadTexture("Bullet", BULLET_FILEPATH);
     ResMgr::GetInst()->LoadTexture("Laser", LASER_FILEPATH);
-
     ResMgr::GetInst()->LoadTexture("EnemyBullet", ENEMYBULLET_FILEPATH);
-    ResMgr::GetInst()->LoadTexture("Split", LASER_FILEPATH);
-    ResMgr::GetInst()->LoadTexture("Rotate", LASER_FILEPATH);
 
     ResMgr::GetInst()->LoadTexture("Gun01", GUN01_FILEPATH);
-    ResMgr::GetInst()->LoadTexture("Bomb", BOMB_FILEPATH);
-
     ResMgr::GetInst()->LoadTexture("BG01", HYBG1_FILEPATH);
     ResMgr::GetInst()->LoadTexture("BG02", HYBG2_FILEPATH);
     ResMgr::GetInst()->LoadTexture("Enemy01", ENEMY01_FILEPATH);
     ResMgr::GetInst()->LoadTexture("Enemydown", ENEMY02_FILEPATH);
-    ResMgr::GetInst()->LoadTexture("EnemyMoveShoot", ENEMY03_FILEPATH);
+    ResMgr::GetInst()->LoadTexture("Enemyshoot", ENEMY03_FILEPATH);
+    ResMgr::GetInst()->LoadTexture("Bomb", BOMB_FILEPATH);
 
     ResMgr::GetInst()->LoadTexture("HpKit", ITEMHPKIT_FILEPATH);
     ResMgr::GetInst()->LoadTexture("Double", ITEMDOUBLE_FILEPATH);
@@ -42,29 +38,26 @@ void Core::Init()
     ResMgr::GetInst()->LoadTexture("Shield", ITEMSHIELD_FILEPATH);
     ResMgr::GetInst()->LoadTexture("Hptank", ITEMHPTANK_FILEPATH);
     ResMgr::GetInst()->LoadTexture("Statpoint", ITEMSTATPOINT_FILEPATH);
-
+    // acc
     for (int i = 1; i <= 11; i++)
     {
-        ResMgr::GetInst()->LoadTexture("AURA" + std::to_string(i),
-            AURA_FILEPATH + std::to_string(i) + ".png");
+        ResMgr::GetInst()->LoadTexture("AURA" + std::to_string(i), 
+            AURA_FILPATH + std::to_string(i) + ".png");
     }
-
     for (int i = 1; i <= 16; i++)
     {
         ResMgr::GetInst()->LoadTexture("CPIT" + std::to_string(i),
-            CPIT_FILEPATH + std::to_string(i) + ".png");
+            CPIT_FILPATH + std::to_string(i) + ".png");
     }
-
     for (int i = 1; i <= 13; i++)
     {
         ResMgr::GetInst()->LoadTexture("WINGLEFT" + std::to_string(i),
-            WINGLEFT_FILEPATH + std::to_string(i) + ".png");
+            WINGLEFT_FILPATH + std::to_string(i) + ".png");
     }
-
     for (int i = 1; i <= 13; i++)
     {
         ResMgr::GetInst()->LoadTexture("WINGRIGHT" + std::to_string(i),
-            WINGRIGHT_FILEPATH + std::to_string(i) + ".png");
+            WINGRIGHT_FILPATH + std::to_string(i) + ".png");
     }
 
     ResMgr::GetInst()->LoadFont("Dosis Font", DOSISFONT_FILEPATH);

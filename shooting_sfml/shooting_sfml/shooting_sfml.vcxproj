@@ -24,7 +24,7 @@
     <ProjectGuid>{af66aafc-c1c7-4559-b404-6de7ed75faaa}</ProjectGuid>
     <RootNamespace>shootingsfml</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>(t)shooting_sfml</ProjectName>
+    <ProjectName>찐수업용(t)shooting_sfml</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -112,6 +112,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)\sfml\include</AdditionalIncludeDirectories>
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

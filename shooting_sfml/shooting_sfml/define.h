@@ -8,22 +8,21 @@
 #define PLAYER_FILEPATH "Textures\\shipp.png"
 #define BULLET_FILEPATH "Textures\\Guns\\missileTex01p.png"
 #define LASER_FILEPATH "Textures\\Guns\\rayTex01.png"
+#define BOMB_FILEPATH "Textures\\Guns\\bomb.png"
+#define ENEMYBULLET_FILEPATH "Textures\\Guns\\roundBulletRed.png"
 #define DOSISFONT_FILEPATH "Fonts\\Dosis-Light.ttf"
 
-#define ENEMYBULLET_FILEPATH "Textures\\Guns\\roundBulletRed.png"
-
 #define GUN01_FILEPATH "Textures\\Guns\\gun01.png"
-#define BOMB_FILEPATH "Textures\\Guns\\bomb.png"
 #define HYBG1_FILEPATH "Textures\\Background\\Space_background_01.bmp"
 #define HYBG2_FILEPATH "Textures\\Background\\Space_background_02.bmp"
 #define ENEMY01_FILEPATH "Textures\\Enemy\\enemy.png"
 #define ENEMY02_FILEPATH "Textures\\Enemy\\enemyMove.png"
 #define ENEMY03_FILEPATH "Textures\\Enemy\\enemyMoveShoot.png"
 
-#define AURA_FILEPATH "Textures\\Accessories\\aura"
-#define CPIT_FILEPATH "Textures\\Accessories\\cpit"
-#define WINGLEFT_FILEPATH "Textures\\Accessories\\wingLeft"
-#define WINGRIGHT_FILEPATH "Textures\\Accessories\\wingRight"
+#define AURA_FILPATH "Textures\\Accessories\\aura"
+#define CPIT_FILPATH "Textures\\Accessories\\cpit"
+#define WINGLEFT_FILPATH "Textures\\Accessories\\wingLeft"
+#define WINGRIGHT_FILPATH "Textures\\Accessories\\wingRight"
 
 #define ITEMHPKIT_FILEPATH "Textures\\Item\\hpSupply.png"
 #define ITEMDOUBLE_FILEPATH "Textures\\Item\\doubleray.png"

@@ -1,31 +1,31 @@
 #include "pch.h"
 #include "Item.h"
 
-Item::Item(Vector2f _pos, Vector2f _dir, ITEM_TYPE _eType, float _aliveTime)
+Item::Item(Vector2f _pos, Vector2f _dir, ITEM_TYPE _etype, float _alivetime)
 {
-	m_eType = _eType;
+	m_eType = _etype;
 	switch (m_eType)
 	{
-	case ITEM_TYPE::HP_KIT:
+	case ITEM_TYPE::HPKIT:
 	{
 		m_sprite.setTexture(ResMgr::GetInst()->GetTexture("HpKit"));
 	}
-	break;
+		break;
 	case ITEM_TYPE::STAT_POINT:
 	{
 		m_sprite.setTexture(ResMgr::GetInst()->GetTexture("StatPoint"));
 	}
-	break;
+		break;
 	case ITEM_TYPE::HPMAXUP:
 	{
-		m_sprite.setTexture(ResMgr::GetInst()->GetTexture("HpTank"));
+		m_sprite.setTexture(ResMgr::GetInst()->GetTexture("Hptank"));
 	}
-	break;
+		break;
 	case ITEM_TYPE::DOUBLE:
 	{
 		m_sprite.setTexture(ResMgr::GetInst()->GetTexture("Double"));
 	}
-	break;
+		break;
 	case ITEM_TYPE::TRIPLE:
 	{
 		m_sprite.setTexture(ResMgr::GetInst()->GetTexture("Triple"));
@@ -36,19 +36,17 @@ Item::Item(Vector2f _pos, Vector2f _dir, ITEM_TYPE _eType, float _aliveTime)
 		m_sprite.setTexture(ResMgr::GetInst()->GetTexture("Piercing"));
 	}
 		break;
-	case ITEM_TYPE::SHILED:
+	case ITEM_TYPE::SHIELD:
 	{
 		m_sprite.setTexture(ResMgr::GetInst()->GetTexture("Shield"));
 	}
-		break;
-	default:
 		break;
 	}
 	m_sprite.setColor(Color(255, 255, 255, 200));
 	m_sprite.setOrigin(m_sprite.getGlobalBounds().width / 2,
 						m_sprite.getGlobalBounds().height / 2);
-	m_alivetimermax = _aliveTime;
-	m_alivetimermax = 0.f;
+	m_alivetimermax = _alivetime;
+	m_alivetimer = 0.f;
 	m_sprite.setPosition(_pos);
 	m_dir = _dir;
 }
@@ -63,4 +61,5 @@ void Item::Update(const float& _dt)
 
 void Item::Render()
 {
+	WindowMgr::GetInst()->GetWindow().draw(m_sprite);
 }

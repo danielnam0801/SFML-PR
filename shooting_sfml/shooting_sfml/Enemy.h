@@ -23,7 +23,12 @@ public:
 	const int& GetHpMax() const { return m_hpMax; }
 	const bool& GetIsDead() const { return m_hp <= 0; }
 	const int& GetFollownum() const { return m_followPlayernum; }
-	const void SetFollownum(const int& num) { m_followPlayernum = num; }
+	void SetFollownum(int _num)
+	{
+		m_followPlayernum = _num;
+		if (m_followPlayernum < 0)
+			m_followPlayernum = 0;
+	}
 public:
 	float vectorLength(Vector2f _vec)
 	{
@@ -40,16 +45,19 @@ private:
 	ENEMY_STATE m_eState;
 	int m_followPlayernum;
 	int m_damageTimer;	int m_damageTimerMax;
-	float m_shootTimer;	float m_shootTimerMax;
 	Sprite m_sprite;
 	ENEMY m_eType;
 	int  m_hp; int m_hpMax;
 	int m_damagemin; int m_damagemax;
 	Vector2f m_dir;
 	Vector2f m_normalizedir;
-	Vector2f m_lookDir;
-	Vector2f m_normalizelookDir;
+
+	Vector2f m_lookdir;
+	Vector2f m_normalizelookdir;
 	std::vector<Bullet> m_vecBullet;
+	float m_shootTimer;
+	float m_shootTimerMax;
+
 	sf::RectangleShape m_hpBar;
 	sf::RectangleShape m_hpBarback;
 };

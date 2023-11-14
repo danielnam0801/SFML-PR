@@ -10,16 +10,17 @@ public:
 private:
 	void MoveMent(const float& _dt);
 public:
-	const WEAPON& GetType() const { return m_weapon; }
+	const WEAPON& GetType() const { return m_eType; }
 	const Sprite& GetSprite() const { return m_sprite; }
 	const int& GetDamage() const { return m_damage; }
 private:
+	float m_theta;
 	Sprite m_sprite;
 	float  m_maxVelocity; // 속도
 	float  m_accerlation; // 가속도
 	Vector2f m_dir; // 벡터 방향
 	Vector2f m_curVelocity; // 현재속도
 	int m_damage;
-	WEAPON m_weapon;
+	WEAPON m_eType;
 };
 
