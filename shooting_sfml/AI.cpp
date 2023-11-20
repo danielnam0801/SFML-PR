@@ -27,8 +27,7 @@ void AI::Update(float _dt)
 
 void AI::AddState(State* _pState)
 {
-	State* pState = FindState(_pState->GetType());
-	m_pCurState = _pState;
+	_pState->m_pAI = this;
 	m_mapState.insert({ _pState->GetType(), _pState });
 }
 
@@ -38,4 +37,12 @@ State* AI::FindState(ENEMY_STATE _eState)
 	if (iter == m_mapState.end())
 		return nullptr;
 	return iter->second;
+}
+
+void AI::ChangeState(ENEMY_STATE _eState)
+{
+	State* pNextState = FindState(_eState);
+	m_pCurState->ExitState();
+	m_pCurState = pNextState;
+	m_pCurState->EnterState();
 }

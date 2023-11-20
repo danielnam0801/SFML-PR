@@ -74,7 +74,7 @@ void GameScene::Render()
 	for (auto& e : m_vecPlayer)
 		e->Render();
 	for (auto& e : m_vecEnemy)
-		e.Render();
+		e->Render();
 	for (auto& e : m_vecTextTag)
 		e.Render();
 	if (m_vecPlayer.size() <= 0)
@@ -106,7 +106,7 @@ void GameScene::EnemySpawnUpdate()
 		{
 			for (int i = 0; i < 4; ++i)
 			{
-				m_vecEnemy.push_back(Enemy(Vector2f(rand() % SCREEN_WIDTH, 10.f),
+				m_vecEnemy.push_back(new Enemy(Vector2f(rand() % SCREEN_WIDTH, 10.f),
 					Vector2f(0.f, 1.f), Vector2f(0.1f, 0.1f), ENEMY::MOVEDOWN,
 					rand() % 3 + 1, 1, 2, rand() % m_vecPlayer.size() % 2));
 			}
@@ -123,7 +123,7 @@ void GameScene::EnemySpawnUpdate()
 		{
 			for (int i = 0; i < 6; ++i)
 			{
-				m_vecEnemy.push_back(Enemy(Vector2f(rand() % SCREEN_WIDTH, 10.f),
+				m_vecEnemy.push_back(new Enemy(Vector2f(rand() % SCREEN_WIDTH, 10.f),
 					Vector2f(0.f, 1.f), Vector2f(0.1f, 0.1f), (ENEMY)(rand() % 2),
 					rand() % 4 + 2, 2, 3, rand() % m_vecPlayer.size() % 2));
 			}
@@ -140,7 +140,7 @@ void GameScene::EnemySpawnUpdate()
 		{
 			for (int i = 0; i < 8; ++i)
 			{
-				m_vecEnemy.push_back(Enemy(Vector2f(rand() % SCREEN_WIDTH, 10.f),
+				m_vecEnemy.push_back(new Enemy(Vector2f(rand() % SCREEN_WIDTH, 10.f),
 					Vector2f(0.f, 1.f), Vector2f(0.1f, 0.1f), (ENEMY)(rand() % 3),
 					rand() % 4 + 2, 2, 3, rand() % m_vecPlayer.size() % 2));
 			}
@@ -153,7 +153,7 @@ void GameScene::EnemySpawnUpdate()
 	break;
 	case GAME_STAGE::ELITE:
 	{
-		m_vecEnemy.push_back(Enemy(Vector2f(SCREEN_WIDTH / 2, 100.f),
+		m_vecEnemy.push_back(new Enemy(Vector2f(SCREEN_WIDTH / 2, 100.f),
 			Vector2f(1.f, 0.f), Vector2f(0.1f, 0.1f), ENEMY::ELITE,
 			50, 3, 5, rand() % m_vecPlayer.size() % 2));
 	}
@@ -195,9 +195,9 @@ void GameScene::EnemyUpdate(float _dt)
 		EnemySpawnUpdate();
 	for (size_t i = 0; i < m_vecEnemy.size(); )
 	{
-		if (m_vecEnemy[i].Update(_dt, 
-			m_vecPlayer[m_vecEnemy[i].GetFollownum()]->GetSprite().getPosition())
-			|| m_vecEnemy[i].GetIsDead())
+		if (m_vecEnemy[i]->Update(_dt, 
+			m_vecPlayer[m_vecEnemy[i]->GetFollownum()]->GetSprite().getPosition())
+			|| m_vecEnemy[i]->GetIsDead())
 			m_vecEnemy.erase(m_vecEnemy.begin() + i);
 		else
 			i++;
@@ -210,7 +210,7 @@ void GameScene::PlayerUpdate(float _dt)
 	{
 		if (m_vecPlayer[i]->IsAlive())
 		{
-			m_vecPlayer[i]->Update(_dt,m_vecEnemy);
+			m_vecPlayer[i]->Update(_dt, m_vecEnemy);
 			++i;
 		}
 		else if (!m_vecPlayer[i]->IsAlive())
@@ -218,15 +218,15 @@ void GameScene::PlayerUpdate(float _dt)
 			for (size_t j = 0; j < m_vecEnemy.size(); ++j)
 			{
 				// 적이 따라가는 번호랑 플레이어의 번호랑 같은지, 
-				if (m_vecEnemy[j].GetFollownum() == m_vecPlayer[i]->GetNum()
+				if (m_vecEnemy[j]->GetFollownum() == m_vecPlayer[i]->GetNum()
 					&& m_vecPlayer[i]->GetNum() != 0)
 				{
-					m_vecEnemy[j].SetFollownum((m_vecEnemy[j].GetFollownum() + 1) % 2);
+					m_vecEnemy[j]->SetFollownum((m_vecEnemy[j]->GetFollownum() + 1) % 2);
 				}
 				// 0번( 1Player 죽었다.) 
 				else if(m_vecPlayer[i]->GetNum() == 0)
 				{
-					m_vecEnemy[j].SetFollownum(m_vecEnemy[j].GetFollownum() - 1);
+					m_vecEnemy[j]->SetFollownum(m_vecEnemy[j]->GetFollownum() - 1);
 				}
 			}
 			m_vecPlayer.erase(m_vecPlayer.begin() + i);

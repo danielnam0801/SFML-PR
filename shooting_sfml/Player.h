@@ -89,7 +89,7 @@ public:
 public:
 	Player(Keyboard::Key _up, Keyboard::Key _down, Keyboard::Key _left
 		  ,Keyboard::Key _right, Keyboard::Key _shoot, Keyboard::Key _bomb, int _num);
-	void Update(const float& _dt, vector<Enemy>& _vecenemy);
+	void Update(const float& _dt, vector<Enemy*>& _vecenemy);
 	void Render();
 	void TakeDamage(int _damage);
 	bool GainExp(int _exp);
@@ -103,7 +103,7 @@ private:
 	void AccessoryUpdate();
 	void AccessoryChange();
 	void TimerUpdate(const float& _dt);
-	void CollisionEnemy(const float& _dt, vector<Enemy>& _vecenemy);
-	void BulletCollisionEnemy(const float& _dt, vector<Enemy>& _vecenemy);
+	void CollisionEnemy(const float& _dt, vector<Enemy*>& _vecenemy);
+	void BulletCollisionEnemy(const float& _dt, vector<Enemy*>& _vecenemy);
 };
 

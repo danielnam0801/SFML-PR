@@ -387,19 +387,19 @@ void Player::TimerUpdate(const float& _dt)
 	//}
 }
 
-void Player::CollisionEnemy(const float& _dt, vector<Enemy>& _vecenemy)
+void Player::CollisionEnemy(const float& _dt, vector<Enemy*>& _vecenemy)
 {
 	// 플레이어 - 적 충돌
 	for (size_t i = 0; i < _vecenemy.size();++i)
 	{
 		if (m_clock.getElapsedTime().asSeconds() > 2.f)
 		{
-			if (m_sprite.getGlobalBounds().intersects(_vecenemy[i].GetSprite().getGlobalBounds()))
+			if (m_sprite.getGlobalBounds().intersects(_vecenemy[i]->GetSprite().getGlobalBounds()))
 			{
-				TakeDamage(_vecenemy[i].GetDamage());
+				TakeDamage(_vecenemy[i]->GetDamage());
 				//int damage = _vecenemy[i].GetDamage();
 				//m_hp -= damage;
-				m_vectextTag.push_back(TextTag("-" + std::to_string(_vecenemy[i].GetDamage()), 
+				m_vectextTag.push_back(TextTag("-" + std::to_string(_vecenemy[i]->GetDamage()),
 					1.f, 20.f,
 					Vector2f(m_sprite.getPosition().x, m_sprite.getPosition().y - 20.f),
 					Vector2f(0.f, 1.f), Color::Red, 30, true));
@@ -419,7 +419,7 @@ void Player::CollisionEnemy(const float& _dt, vector<Enemy>& _vecenemy)
 	}
 }
 
-void Player::BulletCollisionEnemy(const float& _dt, vector<Enemy>& _vecenemy)
+void Player::BulletCollisionEnemy(const float& _dt, vector<Enemy*>& _vecenemy)
 {
 	// 플레이어의 총알 - 적 충돌
 	bool IsBulletRemoved = false;
@@ -429,23 +429,23 @@ void Player::BulletCollisionEnemy(const float& _dt, vector<Enemy>& _vecenemy)
 			IsBulletRemoved = true;
 		for (size_t j = 0; j < _vecenemy.size(); ++j)
 		{
-			if (m_vecbullet[i].GetSprite().getGlobalBounds().intersects(_vecenemy[j].GetSprite().getGlobalBounds()))
+			if (m_vecbullet[i].GetSprite().getGlobalBounds().intersects(_vecenemy[j]->GetSprite().getGlobalBounds()))
 			{
 				IsBulletRemoved = true;
-				if (!_vecenemy[j].GetIsDead())
+				if (!_vecenemy[j]->GetIsDead())
 				{
 					int damage = m_vecbullet[i].GetDamage();
-					_vecenemy[j].TakeDamage(damage);
+					_vecenemy[j]->TakeDamage(damage);
 					m_vectextTag.push_back(TextTag("-" + std::to_string(damage),
 						1.f, 20.f,
-						Vector2f(_vecenemy[j].GetSprite().getPosition().x,
-							_vecenemy[j].GetSprite().getPosition().y - 30.f),
+						Vector2f(_vecenemy[j]->GetSprite().getPosition().x,
+							_vecenemy[j]->GetSprite().getPosition().y - 30.f),
 						Vector2f(0.f, -1.f), Color::Red, 30, true));
 				}
-				if (_vecenemy[j].GetIsDead())
+				if (_vecenemy[j]->GetIsDead())
 				{
-					int exp = _vecenemy[j].GetHpMax();
-					m_score += _vecenemy[j].GetHpMax();
+					int exp = _vecenemy[j]->GetHpMax();
+					m_score += _vecenemy[j]->GetHpMax();
 					m_timer = m_timermax;
 					//m_exp += exp;
 					if (GainExp(exp))
@@ -475,7 +475,7 @@ void Player::BulletCollisionEnemy(const float& _dt, vector<Enemy>& _vecenemy)
 	}
 }
 
-void Player::Update(const float& _dt, vector<Enemy>& _vecenemy)
+void Player::Update(const float& _dt, vector<Enemy*>& _vecenemy)
 {
 	TimerUpdate(_dt);
 	MoveMent(_dt);

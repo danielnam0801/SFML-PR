@@ -1,4 +1,5 @@
 #pragma once
+class AI; class Enemy;
 class State
 {
 public:
@@ -13,7 +14,14 @@ public:
 	{
 		return m_eState;
 	}
-private:
+	AI* GetAI() const
+	{
+		return m_pAI;
+	}
+protected:
 	ENEMY_STATE m_eState;
+	AI* m_pAI;
+	Enemy* m_pEnemy;
+	friend class AI;
 };
 

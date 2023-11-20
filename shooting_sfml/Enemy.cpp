@@ -83,6 +83,12 @@ Enemy::Enemy(Vector2f _pos, Vector2f _dir, Vector2f _scale, ENEMY _eType,
 	m_followPlayernum = _followplayernum;
 }
 
+Enemy::~Enemy()
+{
+	if (nullptr != m_pAI)
+		delete m_pAI;
+}
+
 void Enemy::TakeDamage(int _damage)
 {
 	m_hp -= _damage;
@@ -174,105 +180,74 @@ void Enemy::MoveMent(const float& _dt, Vector2f _playerpos)
 		break;
 	case ENEMY::ELITE:
 	{
-		switch (m_eState)
-		{
-		case ENEMY_STATE::IDLE:
-		{
-			// move
-			Vector2f curpos = m_sprite.getPosition();
-			curpos.x += 500.f * _dt * m_dir.x;
-			float fDist = abs(m_centerpos.x - curpos.x) - m_fMaxDis;
-			if (fDist > 0.f)
-			{
-				m_dir.x *= -1.f;
-				curpos.x += fDist * m_dir.x;
-			}
-			m_sprite.setPosition(curpos);
-			if (m_clock.getElapsedTime().asSeconds() > 1.f)
-			{
-				m_eState = ENEMY_STATE::ATTACK_CIRCLE;
-				m_clock.restart();
-			}
-		}
-		break;
-		case ENEMY_STATE::ATTACK_AROUND:
-		{
-			if (m_shootTimer < m_shootTimerMax)
-				m_shootTimer++;
-			if (m_shootTimer >= m_shootTimerMax)
-			{
-				// 12πÊ«‚≈∫
-				Vector2f circlebullet[12] =
-				{ {0,3},{0,-3},{3,0},{-3,0},
-				  {3,1},{3,-1},{-3,1},{-3,-1},
-				{2,2},{-2,-2},{-2,2},{2,-2} };
-				for (int i = 0; i < 12; ++i)
-				{
-					m_vecBullet.push_back(Bullet(Vector2f(m_sprite.getPosition()),
-						2.f, 50.f, Vector2f(circlebullet[i]), 2.f, WEAPON::ENEMY_BULLET));
-				}
-				m_eState = ENEMY_STATE::IDLE;
-				//m_eState = ENEMY_STATE::ATTACK_CIRCLE;
-				m_shootTimer = 0.f;
-			}
-		}
-		break;
-		case ENEMY_STATE::ATTACK_CIRCLE:
-		{
-			if (m_clock.getElapsedTime().asSeconds() > 0.5f)
-			{
-				m_vecBullet.push_back(Bullet(Vector2f(m_sprite.getPosition()),
-					2.f, 50.f, Vector2f(-1.f, 0.f), 2.f, WEAPON::ROTATE));
-				m_clock.restart();
+		m_pAI->ChangeState(ENEMY_STATE::IDLE);
+		if (m_shootTimer < m_shootTimerMax)
+			m_shootTimer++;
 
-			}
-			if (m_nextclock.getElapsedTime().asSeconds() > 5.f)
-			{
-				//m_eState = ENEMY_STATE::IDLE;
-				m_nextclock.restart();
-			}
-		}
-		break;
-		case ENEMY_STATE::READY:
+		if (m_shootTimer >= m_shootTimerMax)
 		{
-			if (m_clock.getElapsedTime().asSeconds() > 0.1f)
-			{
-				m_vecBullet.push_back(Bullet(Vector2f(m_sprite.getPosition()),
-					2.f, 50.f, Vector2f(-1.f, 0.f), 2.f, WEAPON::ONLYROTATE));
-				m_clock.restart();
-			}
-			if (m_nextclock.getElapsedTime().asSeconds() > 5.f)
-			{
-				m_eState = ENEMY_STATE::ATTACK_PLAYER;
-				m_nextclock.restart();
-			}
+			// 12πÊ«‚≈∫
+			m_pAI->ChangeState(ENEMY_STATE::ATTACK_AROUND);
+			//m_eState = ENEMY_STATE::ATTACK_CIRCLE;
+			m_shootTimer = 0.f;
 		}
-			break;
-		case ENEMY_STATE::ATTACK_PLAYER:
-		{
-			m_dir = _playerpos - m_sprite.getPosition();
-			m_normalizedir = Normalize(m_dir, vectorLength(m_dir));
-			m_sprite.move(m_normalizedir * 100.f * _dt);
+	};
+	//	case ENEMY_STATE::ATTACK_CIRCLE:
+	//	{
+	//		if (m_clock.getElapsedTime().asSeconds() > 0.5f)
+	//		{
+	//			m_vecBullet.push_back(Bullet(Vector2f(m_sprite.getPosition()),
+	//				2.f, 50.f, Vector2f(-1.f, 0.f), 2.f, WEAPON::ROTATE));
+	//			m_clock.restart();
 
-		}
-		break;
-		case ENEMY_STATE::BACK:
-		{
+	//		}
+	//		if (m_nextclock.getElapsedTime().asSeconds() > 5.f)
+	//		{
+	//			//m_eState = ENEMY_STATE::IDLE;
+	//			m_nextclock.restart();
+	//		}
+	//	}
+	//	break;
+	//	case ENEMY_STATE::READY:
+	//	{
+	//		if (m_clock.getElapsedTime().asSeconds() > 0.1f)
+	//		{
+	//			m_vecBullet.push_back(Bullet(Vector2f(m_sprite.getPosition()),
+	//				2.f, 50.f, Vector2f(-1.f, 0.f), 2.f, WEAPON::ONLYROTATE));
+	//			m_clock.restart();
+	//		}
+	//		if (m_nextclock.getElapsedTime().asSeconds() > 5.f)
+	//		{
+	//			m_eState = ENEMY_STATE::ATTACK_PLAYER;
+	//			m_nextclock.restart();
+	//		}
+	//	}
+	//		break;
+	//	case ENEMY_STATE::ATTACK_PLAYER:
+	//	{
+	//		m_dir = _playerpos - m_sprite.getPosition();
+	//		m_normalizedir = Normalize(m_dir, vectorLength(m_dir));
+	//		m_sprite.move(m_normalizedir * 100.f * _dt);
 
-		}
-		break;
-		}
+	//	}
+	//	break;
+	//	case ENEMY_STATE::BACK:
+	//	{
 
-	}
-	break;
-	case ENEMY::BOSS1:
-	{
-	}
-		break;
-	}
+	//	}
+	//	break;
+	//	}
+
+	//}
+	//break;
+	//case ENEMY::BOSS1:
+	//{
+	//}
+	//	break;
+	//}
 	for (auto& e : m_vecBullet)
 		e.Update(_dt, m_sprite);
-
+	}
 }
 
 void Enemy::UiUpdate()

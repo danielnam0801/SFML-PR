@@ -8,6 +8,7 @@ public:
 	Enemy(Vector2f _pos, Vector2f _dir, Vector2f _scale, ENEMY _eType,
 		int _hpMax, int _damagemin, int _damagemax,
 		int _followplayernum);
+	~Enemy();
 public:
 	void TakeDamage(int _damage);
 	bool Update(const float& _dt, Vector2f _playerpos);
@@ -19,16 +20,39 @@ public:
 					// 데미지를 1 ~ 10
 	const int& GetDamage() const 
 	{ return rand() % (m_damagemax - m_damagemin)+ m_damagemin; }
+	const Vector2f& GetDir() const
+	{
+		return m_dir;
+	}
+	const Vector2f& GetCenterPos() const
+	{
+		return m_centerpos;
+	}
+	std::vector<Bullet>& GetBullet() { return m_vecBullet; }
+	const float& GetMaxDis() const{ return m_fMaxDis; }
 	const Sprite& GetSprite() const { return m_sprite; }
 	const int& GetHp() const { return m_hp; }
 	const int& GetHpMax() const { return m_hpMax; }
 	const bool& GetIsDead() const { return m_hp <= 0; }
 	const int& GetFollownum() const { return m_followPlayernum; }
+	const Clock& GetClock() const { return m_clock; }
 	void SetFollownum(int _num)
 	{
 		m_followPlayernum = _num;
 		if (m_followPlayernum < 0)
 			m_followPlayernum = 0;
+	}
+	void SetDir(Vector2f m_Dir)
+	{
+		m_dir = m_Dir;
+	}
+	void SetPos(Vector2f pos)
+	{
+		m_sprite.setPosition(pos);
+	}
+	void SetState(ENEMY_STATE _state)
+	{
+		m_eState = _state;
 	}
 public:
 	float vectorLength(Vector2f _vec)

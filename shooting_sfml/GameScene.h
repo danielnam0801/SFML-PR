@@ -21,7 +21,7 @@ private:
 	std::vector<TextTag> m_vecTextTag;
 	//std::shared_ptr<Player> m_pPlayer;
 	std::vector<std::shared_ptr<Player>> m_vecPlayer;
-	std::vector<Enemy> m_vecEnemy;
+	std::vector<Enemy*> m_vecEnemy;
 	Sprite m_background;
 //	sf::Text m_text;
 	sf::Clock m_clock;
