@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "Object.h"
 #include "Collider.h"
+#include "Rigidbody.h"
+
 Object::Object()
 	: m_IsAlive(true)
 {
@@ -37,4 +39,10 @@ void Object::CreateCollider()
 {
 	m_pCollider = new Collider;
 	m_pCollider->m_pOwner = this;
+}
+
+void Object::CreateRigidbody()
+{
+	m_pRigidbody = new Rigidbody;
+	m_pRigidbody->m_pOwner = this;
 }

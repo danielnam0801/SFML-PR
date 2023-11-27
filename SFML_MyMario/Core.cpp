@@ -14,8 +14,20 @@ void Core::Init()
 {
     // ResMgr에 Font, Texture.. 담았습니다.
    // ResMgr::GetInst()->LoadTexture("Title", TITLE_FILEPATH);
+    for (auto& e : std::filesystem::directory_iterator("./Texture/"))
+    {
+        if (e.is_regular_file() && e.path().extension() == ".png")
+        {
+            string keystr = e.path().string();
+            string texstr = "./Texture/";
+            string pngstr = ".png";
+            keystr.replace(keystr.find(texstr), texstr.length(), "");
+            keystr.replace(keystr.find(pngstr), pngstr.length(), "");
+
+            ResMgr::GetInst()->LoadTexture(keystr, e.path().string());
+        }
+    }
     SceneMgr::GetInst()->Init();
-    std::filesystem::directory_iterator("./Texture/")
 }
 
 void Core::Run()

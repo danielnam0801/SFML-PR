@@ -1,17 +1,14 @@
 #pragma once
 #include "Object.h"
-class Player :
-    public Object
+class Player : public Object
 {
+public:
+    Player();
 public:
     virtual void Update(float _dt) override;
     virtual void Render() override;
-public:
-    const Sprite& GetSprite() const
-    {
-        return m_sprite;
-    }
-private:
-    Sprite m_sprite;
+    virtual void EnterCollision(Collider* _other);
+    virtual void ExitCollision(Collider* _other);
+    virtual void StayCollision(Collider* _other);
 };
 
