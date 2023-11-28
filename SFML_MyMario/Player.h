@@ -12,6 +12,11 @@ public:
     virtual void ExitCollision(Collider* _pOther);
     virtual void StayCollision(Collider* _pOther);
 private:
+    float circleTime;
+    float curTime;
+    sf::CircleShape m_circle;
+private:
+    void MakeCircleShape();
     void MoveUpdate(float _dt);
 };
 

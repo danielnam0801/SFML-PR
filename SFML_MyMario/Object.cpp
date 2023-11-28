@@ -19,6 +19,10 @@ void Object::FinalUpdate(float _dt)
 	{
 		m_pCollider->FinalUpdate(_dt);
 	}
+	if (nullptr != m_pRigidbody)
+	{
+		m_pRigidbody->FinalUpdate(_dt);
+	}
 }
 
 

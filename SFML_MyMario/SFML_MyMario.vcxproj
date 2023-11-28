@@ -142,6 +142,7 @@
     </ClCompile>
     <ClCompile Include="Core.cpp" />
     <ClCompile Include="EventMgr.cpp" />
+    <ClCompile Include="func.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
@@ -167,6 +168,7 @@
     <ClInclude Include="define.h" />
     <ClInclude Include="enums.h" />
     <ClInclude Include="EventMgr.h" />
+    <ClInclude Include="func.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MenuScene.h" />

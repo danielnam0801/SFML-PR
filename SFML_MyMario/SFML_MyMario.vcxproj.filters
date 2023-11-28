@@ -76,6 +76,9 @@
     <ClCompile Include="Rigidbody.cpp">
       <Filter>Component</Filter>
     </ClCompile>
+    <ClCompile Include="func.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core.h">
@@ -134,6 +137,9 @@
     </ClInclude>
     <ClInclude Include="Rigidbody.h">
       <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="func.h">
+      <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

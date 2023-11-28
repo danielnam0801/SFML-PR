@@ -22,13 +22,13 @@ public:
 	Sprite& GetSprite() { return m_sprite; }
 	const Vector2f& GetPos() const { return m_sprite.getPosition(); }
 	const FloatRect& GetScale() const { return m_sprite.getGlobalBounds(); }
+	void CreateRigidbody();
 	//void SetPos(Vector2f _v) { m_vPos = _v; }
 	//void SetScale(Vector2f _v) { m_vScale = _v; }
 private:
 	void SetDead() { m_IsAlive = false; }
 	friend class EventMgr;
 	void CreateCollider();
-	void CreateRigidbody();
 private:
 	Rigidbody* m_pRigidbody;
 	Sprite m_sprite;

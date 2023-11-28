@@ -12,6 +12,7 @@
 #include <Windows.h>
 #include"define.h"
 #include "enums.h"
+#include "func.h"
 using std::vector;
 using std::map;
 using std::string;
