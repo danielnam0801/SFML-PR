@@ -2,7 +2,6 @@
 #include "Object.h"
 #include "Collider.h"
 #include "Rigidbody.h"
-
 Object::Object()
 	: m_IsAlive(true)
 {

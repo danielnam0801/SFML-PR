@@ -2,11 +2,12 @@
 #include "Map.h"
 #include "Object.h"
 #include "Tile.h"
+#include "Collider.h"
 #include "SceneMgr.h"
-#include "Player.h"
 #include "Scene.h"
-
+#include "Player.h"
 Map::Map()
+	: m_cellSize(16.f)
 {
 }
 
@@ -14,15 +15,15 @@ Map::~Map()
 {
 }
 
-void Map::GreateFromImage(const sf::Image& _image)
+void Map::CreateFromImage(const sf::Image & _image)
 {
+	// ±ú²ýÇÏ°Ô Áö¿öÁÖ°í
 	m_grid.clear();
-	m_grid = std::vector(_image.getSize().x,
+	m_grid = std::vector(_image.getSize().x, 
 		std::vector(_image.getSize().y, 0));
-	
-	sf::Vector2f marioPos;
-	std::shared_ptr<Scene> p_CurScene = SceneMgr::GetInst()->GetCurScene();
 
+	sf::Vector2f mariopos;
+	std::shared_ptr<Scene> pCurScene = SceneMgr::GetInst()->GetCurScene();
 	for (size_t i = 0; i < m_grid.size(); ++i)
 	{
 		for (size_t j = 0; j < m_grid[i].size(); ++j)
@@ -31,21 +32,21 @@ void Map::GreateFromImage(const sf::Image& _image)
 			{
 				m_grid[i][j] = 1;
 				Object* pTile = new Tile(
-					Vector2f(i * m_cellsize, j * m_cellsize),
-					Vector2f(m_cellsize, m_cellsize)
-				);
-				pTile->SetName("TIle");
-				p_CurScene->
-					AddObject(pTile, OBJECT_GROUP::TILE);
+					Vector2f(i * m_cellSize,
+						j * m_cellSize)
+					, Vector2f(m_cellSize, m_cellSize));
+				pTile->SetName("Tile");
+				pCurScene->AddObject(pTile, OBJECT_GROUP::TILE);
 			}
 			else if (_image.getPixel(i, j) == sf::Color::Red)
 			{
-				marioPos = Vector2f(i * m_cellsize, j * m_cellsize);
+				mariopos = Vector2f(i * m_cellSize, j * m_cellSize);
+
 				Object* pPlayer = new Player;
 				pPlayer->SetName("Mario");
-				pPlayer->GetSprite().setPosition(marioPos);
-				p_CurScene->AddObject(pPlayer, OBJECT_GROUP::PLAYER);
+				pPlayer->GetSprite().setPosition(mariopos);
+				pCurScene->AddObject(pPlayer, OBJECT_GROUP::PLAYER);
 			}
-;		}
+		}
 	}
 }

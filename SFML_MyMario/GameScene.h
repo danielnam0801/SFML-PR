@@ -1,6 +1,6 @@
 #pragma once
 #include "Scene.h"
-//#include "Camera.h"
+#include "Map.h"
 class GameScene : public Scene
 {
 public:
@@ -9,5 +9,6 @@ public:
 	void Render() override;
 private:
 	sf::RectangleShape m_rt;
+	Map m_map;
 };
 

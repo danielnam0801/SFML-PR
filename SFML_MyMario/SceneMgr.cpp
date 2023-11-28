@@ -40,7 +40,8 @@ void SceneMgr::Init()
 
 void SceneMgr::Update(const float& _dt)
 {
-0}
+    m_pCurScene->Update(_dt);
+}
 
 void SceneMgr::Render()
 {

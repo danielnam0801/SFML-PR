@@ -2,6 +2,6 @@
 #include "Core.h"
 int main()
 {
-	Core core(1920, 1080, "My Mario");
+	Core core(SCREEN_WIDTH, SCREEN_HEIGHT, "My Mario");
 	core.Run();
 }

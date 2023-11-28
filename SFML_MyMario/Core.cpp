@@ -3,7 +3,9 @@
 #include "WindowMgr.h"
 #include "SceneMgr.h"
 #include "ResMgr.h"
-#include <filesystem> //파일 시스템
+//#include <iostream> // 표준 입출력
+//#include <fstream> // 파일 입출력 ifstream, ofstream
+#include <filesystem> // 파일시스템.
 Core::Core(int _width, int _height, std::string _title)
 {
     srand((unsigned int)time(nullptr));
@@ -23,8 +25,9 @@ void Core::Init()
             string pngstr = ".png";
             keystr.replace(keystr.find(texstr), texstr.length(), "");
             keystr.replace(keystr.find(pngstr), pngstr.length(), "");
-
-            ResMgr::GetInst()->LoadTexture(keystr, e.path().string());
+            keystr;
+                                          // 키값, 경로.
+            ResMgr::GetInst()->LoadTexture(keystr,e.path().string());
         }
     }
     SceneMgr::GetInst()->Init();

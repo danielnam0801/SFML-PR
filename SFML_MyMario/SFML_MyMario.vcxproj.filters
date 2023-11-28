@@ -21,7 +21,7 @@
       <UniqueIdentifier>{5c5d80e1-5bf1-413b-9338-f69a9a5ae226}</UniqueIdentifier>
     </Filter>
     <Filter Include="Map">
-      <UniqueIdentifier>{3ba50f62-cbe8-4ec8-aee2-d798d1273f7c}</UniqueIdentifier>
+      <UniqueIdentifier>{a0a80fbf-a24d-43e3-a8e6-bb12e7319d5b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -64,11 +64,18 @@
     <ClCompile Include="Player.cpp">
       <Filter>Object</Filter>
     </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Map</Filter>
+    </ClCompile>
     <ClCompile Include="Tile.cpp">
       <Filter>Map</Filter>
     </ClCompile>
-    <ClCompile Include="Map.cpp" />
-    <ClCompile Include="Rigidbody.cpp" />
+    <ClCompile Include="Camera.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Rigidbody.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core.h">
@@ -116,10 +123,17 @@
     <ClInclude Include="Player.h">
       <Filter>Object</Filter>
     </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Map</Filter>
+    </ClInclude>
     <ClInclude Include="Tile.h">
       <Filter>Map</Filter>
     </ClInclude>
-    <ClInclude Include="Map.h" />
-    <ClInclude Include="Rigidbody.h" />
+    <ClInclude Include="Camera.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Rigidbody.h">
+      <Filter>Component</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

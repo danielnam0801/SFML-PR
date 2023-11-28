@@ -2,6 +2,7 @@
 enum class OBJECT_GROUP
 {
 	DEFAULT,
+	TILE,
 	PLAYER,
 	MONSTER,
 	BULLET,

@@ -20,18 +20,17 @@ public:
 	Collider* GetCollider() { return m_pCollider; }
 	Rigidbody* GetRigidbody() { return m_pRigidbody; }
 	Sprite& GetSprite() { return m_sprite; }
-	//const Vector2f& GetPos() const { return m_vPos; }
-	//const Vector2f& GetScale () const { return m_vScale; }
+	const Vector2f& GetPos() const { return m_sprite.getPosition(); }
+	const FloatRect& GetScale() const { return m_sprite.getGlobalBounds(); }
 	//void SetPos(Vector2f _v) { m_vPos = _v; }
 	//void SetScale(Vector2f _v) { m_vScale = _v; }
-
 private:
-	Rigidbody* m_pRigidbody;
 	void SetDead() { m_IsAlive = false; }
 	friend class EventMgr;
 	void CreateCollider();
 	void CreateRigidbody();
 private:
+	Rigidbody* m_pRigidbody;
 	Sprite m_sprite;
 	//Vector2f m_vPos;
 	//Vector2f m_vScale;
