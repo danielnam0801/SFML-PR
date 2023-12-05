@@ -6,6 +6,7 @@ enum class OBJECT_GROUP
 	PLAYER,
 	MONSTER,
 	BULLET,
+	GROUND,
 	END = 30
 };
 enum class EVENT_TYPE

@@ -3,25 +3,19 @@
 #include "Collider.h"
 #include "ResMgr.h"
 #include "WindowMgr.h"
-#include "Rigidbody.h"
 #include "Camera.h"
+#include "Rigidbody.h"
 Player::Player()
-	: circleTime(1.f)
-	, curTime(0.f)
-	, m_circle(NULL)
 {
 	GetSprite().setTexture(ResMgr::GetInst()->GetTexture("idle"));
 	GetSprite().setOrigin(GetSprite().getGlobalBounds().width / 2
 						,GetSprite().getGlobalBounds().height / 2);
-
 	CreateRigidbody();
 }
 void Player::Update(float _dt)
 {
 	Camera::GetInst()->SetPos(GetPos());
 	MoveUpdate(_dt);
-	MakeCircleShape();
-	if (curTime < circleTime) curTime += _dt;
 }
 
 void Player::Render()
@@ -41,15 +35,6 @@ void Player::StayCollision(Collider* _pOther)
 {
 }
 
-void Player::MakeCircleShape()
-{
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
-	{
-		Vector2i pos = sf::Mouse::getPosition();
-		m_circle = CircleShape(0.1f);
-	}
-}
-
 void Player::MoveUpdate(float _dt)
 {
 	Rigidbody* pRigidbody = GetRigidbody();
@@ -58,12 +43,32 @@ void Player::MoveUpdate(float _dt)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
 		movespeed *= 2;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-		pRigidbody->AddForce(Vector2f(-10.f, 0.f));
+	{
+		//vPos.x -= movespeed * _dt;
+		pRigidbody->AddForce(Vector2f(-10.f,0.f));
+	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-		pRigidbody->AddForce(Vector2f(10.f, 0.f));
+	{
+		//vPos.x += movespeed * _dt;
+		pRigidbody->AddForce(Vector2f(10.f,0.f));
+	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
-		pRigidbody->AddVelocity(Vector2f(30.f, 0.f));
+	{
+		pRigidbody->SetVelocity(Vector2f(30.f, 0.f));
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
+	{
+		pRigidbody->AddVelocity(Vector2f(10.f, 0.f));
+	}
 
-		
 	GetSprite().setPosition(vPos);
+}
+
+void Player::CircleUpdate(float _dt)
+{
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	{
+		Vector2i circlePos = WindowMgr::GetInst()->GetWindow().mapCoordsToPixel((sf::Vector2f)sf::Mouse::getPosition());
+		//_circleShape.setPosition(circlePos);
+	}
 }

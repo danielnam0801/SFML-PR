@@ -12,7 +12,7 @@ Collider::~Collider()
 void Collider::FinalUpdate(float _dt)
 {
 	Vector2f vPos = m_pOwner->GetPos();
-	
+	//vPos += ;
 }
 
 void Collider::Render()

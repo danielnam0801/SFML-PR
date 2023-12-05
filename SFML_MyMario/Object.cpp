@@ -13,6 +13,11 @@ Object::~Object()
 		delete m_pCollider;
 }
 
+void Object::CreateRigidbody()
+{
+	m_pRigidbody = new Rigidbody;
+	m_pRigidbody->m_pOwner = this;
+}
 void Object::FinalUpdate(float _dt)
 {
 	if (nullptr != m_pCollider)
@@ -44,8 +49,3 @@ void Object::CreateCollider()
 	m_pCollider->m_pOwner = this;
 }
 
-void Object::CreateRigidbody()
-{
-	m_pRigidbody = new Rigidbody;
-	m_pRigidbody->m_pOwner = this;
-}

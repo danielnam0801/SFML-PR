@@ -79,6 +79,7 @@
     <ClCompile Include="func.cpp">
       <Filter>Game</Filter>
     </ClCompile>
+    <ClCompile Include="DefTile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core.h">
@@ -141,5 +142,6 @@
     <ClInclude Include="func.h">
       <Filter>Game</Filter>
     </ClInclude>
+    <ClInclude Include="DefTile.h" />
   </ItemGroup>
 </Project>

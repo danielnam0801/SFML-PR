@@ -3,13 +3,17 @@
 #include "WindowMgr.h"
 #include "Camera.h"
 #include "Player.h"
+#include "Map.h"
+
 void GameScene::Init()
 {
-	sf::Image image;
-	image.loadFromFile("./Texture/map.png");
-	Camera::GetInst()->SetZoomLevel(500.f);
-	Camera::GetInst()->SetPos(Vector2f(100.f,100.f));
-	m_map.CreateFromImage(image);
+	/*sf::Image image;
+	image.loadFromFile("./Texture/map.png");*/
+	//Camera::GetInst()->SetZoomLevel(500.f);
+	//Camera::GetInst()->SetPos(Vector2f(100.f,100.f));
+	//m_map.CreateFromImage(image);
+	m_map = new Map;
+	m_map->CreateJsonBoard();
 	/*Object* pPlayer = new Player;
 	pPlayer->SetName("Mario");
 	pPlayer->GetSprite().setPosition(m_map.CreateFromImage(image));
@@ -27,15 +31,16 @@ void GameScene::Update(float _dt)
 	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	//	viewpos.x += movespeed * _dt;
 	//Camera::GetInst()->SetPos(viewpos);
-
+	m_map->UpdateTileAnimation(_dt);
 	Scene::Update(_dt);
 }
 
 void GameScene::Render()
 {
 	GET_WINDOW.clear();
-	GET_WINDOW.setView(Camera::GetInst()->
-		GetWindowView(GET_WINDOW.getSize()));
+	//GET_WINDOW.setView(Camera::GetInst()->
+	//	GetWindowView(GET_WINDOW.getSize()));
+	m_map->Render();
 	Scene::Render();
 	GET_WINDOW.display();
 } 

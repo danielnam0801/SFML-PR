@@ -9,6 +9,6 @@ public:
 	void Render() override;
 private:
 	sf::RectangleShape m_rt;
-	Map m_map;
+	Map* m_map;
 };
 

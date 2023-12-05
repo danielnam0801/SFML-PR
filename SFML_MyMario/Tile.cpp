@@ -2,6 +2,7 @@
 #include "Tile.h"
 #include "WindowMgr.h"
 #include "ResMgr.h"
+
 Tile::Tile(Vector2f _pos, Vector2f _scale)
 {
 	GetSprite().setTexture(ResMgr::GetInst()->GetTexture("brick"));
