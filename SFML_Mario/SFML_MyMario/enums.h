@@ -1,0 +1,19 @@
+#pragma once
+enum class OBJECT_GROUP
+{
+	DEFAULT,
+	TILE,
+	PIPE,
+	GROUND,
+	PLAYER,
+	MONSTER,
+	BULLET,
+	END = 30
+};
+enum class EVENT_TYPE
+{
+	DELETE_OBJECT,
+	CREATE_OBJECT,
+	SCENE_CHANGE,
+	END
+};
